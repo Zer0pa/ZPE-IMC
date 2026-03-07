@@ -206,8 +206,10 @@ external baseline cases. See `R-TOUCH-COMPARATOR-COVERAGE`.
 
 4. **Add evidence** — if your change touches codec behaviour,
    include before/after metrics, a claim status delta, or a
-   falsification result as appropriate; place artifacts under
-   `proofs/artifacts/`
+   falsification result as appropriate; attach evidence in the PR and
+   keep it aligned to the current shipped proof surface. The historical
+   `proofs/artifacts/` warehouse is not part of this reduced public
+   audit snapshot.
 
 5. **Open the PR** — use the PR template; fill every field; do not
    leave the evidence section blank if your change is

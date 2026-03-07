@@ -150,7 +150,7 @@ cases with 0 uncaught crashes. Individual lane campaigns ran
 additional suites (mental: 128 cases, touch: 12 cases, smell: 8
 adversarial cases, etc.). This matters because a transport substrate
 that only works on clean inputs is not a transport substrate — it is
-a demo. The dirty-data results are in `proofs/artifacts/`.
+a demo. The historical dirty-data results live in the source-truth proof warehouse and are not part of this reduced public audit packet.
 
 ---
 

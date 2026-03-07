@@ -28,6 +28,14 @@ pointer at the bottom of this file.
       <td>Public frequently asked questions for architecture, verification, and integration</td>
     </tr>
     <tr>
+      <td>`AUDITOR_PLAYBOOK.md`</td>
+      <td>Shortest outsider verification path for the current public audit surface</td>
+    </tr>
+    <tr>
+      <td>`PUBLIC_AUDIT_LIMITS.md`</td>
+      <td>Public-vs-private boundary note, expected limits, and current audit honesty constraints</td>
+    </tr>
+    <tr>
       <td>`docs/SUPPORT.md`</td>
       <td>Public support routing and response expectations</td>
     </tr>
@@ -74,50 +82,10 @@ coordination anchor — your alignment report must reference it.
 <p>
   <img src="../.github/assets/readme/section-bars/runbooks.svg" alt="RUNBOOKS" width="100%">
 </p>
-Operational execution records for the Wave-1 gate process, phases 0–6.
-
-<table width="100%" border="1" bordercolor="#b8c0ca" cellpadding="0" cellspacing="0">
-  <thead>
-    <tr>
-      <th align="left">Document</th>
-      <th align="left">What it is</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_MASTER.md`</td>
-      <td>Master runbook — full phase chain, gate criteria, execution sequence</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_0.md`</td>
-      <td>Wave-1 phase 0 runbook</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_1.md`</td>
-      <td>Wave-1 phase 1 runbook</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_2.md`</td>
-      <td>Wave-1 phase 2 runbook</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_3.md`</td>
-      <td>Wave-1 phase 3 runbook</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_4.md`</td>
-      <td>Wave-1 phase 4 runbook</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_5.md`</td>
-      <td>Wave-1 phase 5 runbook</td>
-    </tr>
-    <tr>
-      <td>`proofs/runbooks/RUNBOOK_IMC_WAVE1_PHASE_6.md`</td>
-      <td>Wave-1 phase 6 runbook</td>
-    </tr>
-  </tbody>
-</table>
+Operational Wave-1 runbooks are part of source-truth execution lineage,
+but they are intentionally omitted from this reduced public audit
+snapshot. Use `AUDITOR_PLAYBOOK.md`, `PUBLIC_AUDIT_LIMITS.md`, and the
+Phase 6 manifest/log pair as the current public audit path.
 
 ---
 

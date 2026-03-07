@@ -133,6 +133,7 @@ python ./executable/run_with_comet.py
 # optional internal live logging only:
 # COMET_API_KEY=... OPIK_API_KEY=... python ./executable/run_with_comet.py --enable-classic-comet --enable-opik</code></pre>
       <p>Current authority point: <code>proofs/logs/phase6_run_of_record_manifest.json</code></p>
+      <p>Shortest outsider path: <a href="AUDITOR_PLAYBOOK.md"><code>AUDITOR_PLAYBOOK.md</code></a> and <a href="PUBLIC_AUDIT_LIMITS.md"><code>PUBLIC_AUDIT_LIMITS.md</code></a></p>
     </td>
   </tr>
 </table>
@@ -269,6 +270,7 @@ and <code>proofs/logs/phase6_comet_run.txt</code>.</p>
 <ul>
   <li>Contribution workflow: <a href="CONTRIBUTING.md"><code>CONTRIBUTING.md</code></a></li>
   <li>Security policy and reporting: <a href="SECURITY.md"><code>SECURITY.md</code></a></li>
+  <li>Outsider audit guide: <a href="AUDITOR_PLAYBOOK.md"><code>AUDITOR_PLAYBOOK.md</code></a> and <a href="PUBLIC_AUDIT_LIMITS.md"><code>PUBLIC_AUDIT_LIMITS.md</code></a></li>
   <li>User support channel guide: <a href="docs/SUPPORT.md"><code>docs/SUPPORT.md</code></a></li>
   <li>Frequently asked questions: <a href="docs/FAQ.md"><code>docs/FAQ.md</code></a></li>
   <li>Autonomous agents and AI systems using this repository are subject to Section 6 of the <a href="LICENSE">Zer0pa SAL v6.0</a>.</li>

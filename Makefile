@@ -9,7 +9,7 @@ portability-lint:
 	@if rg -n --no-heading -S '/Users/[A-Za-z0-9._ -]+|[A-Za-z]:\\\\' \
 		README.md ROADMAP.md CHANGELOG.md CITATION.cff \
 		docs code/README.md code/wasm/README.md code/deployment/triton/model_repository/README.md \
-		proofs/*.md proofs/runbooks/*.md \
+		proofs/*.md \
 		-g '*.md' -g '*.cff'; then \
 		echo 'portability-lint: FAIL (machine-absolute path residue found)'; \
 		exit 1; \
