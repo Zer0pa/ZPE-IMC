@@ -145,14 +145,8 @@ consumption of the compatibility vector SHA256 above.
 <p>
   <img src="../.github/assets/readme/section-bars/proof-corpus.svg" alt="PROOF CORPUS" width="100%">
 </p>
-The full evidence archive — lane baselines, falsification results, wave
-readiness reports, HOP falsification records, artifacts, logs — lives here:
-
-```text
-proofs/
-```
-
-Entry points:
+This reduced public audit packet carries the current proof subset under
+`proofs/`:
 
 <table width="100%" border="1" bordercolor="#b8c0ca" cellpadding="0" cellspacing="0">
   <thead>
@@ -163,37 +157,41 @@ Entry points:
   </thead>
   <tbody>
     <tr>
-      <td>`proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md`</td>
-      <td>Top-level wave readiness verdict; phase gates, regression, dirty-data campaign</td>
+      <td>`proofs/logs/phase6_run_of_record_manifest.json`</td>
+      <td>Accepted March 7 run-of-record manifest and current authority pointer</td>
     </tr>
     <tr>
-      <td>`proofs/CONSOLIDATED_PROOF_REPORT.md`</td>
-      <td>Full consolidated proof corpus</td>
+      <td>`proofs/logs/phase6_comet_run.txt`</td>
+      <td>Accepted March 7 runtime log for the public replay path</td>
+    </tr>
+    <tr>
+      <td>`proofs/logs/phase6_rust_backend_proof.json`</td>
+      <td>Rust/native backend proof artifact for the current authority path</td>
+    </tr>
+    <tr>
+      <td>`proofs/logs/phase6_standalone_benchmark_summary.json`</td>
+      <td>Current benchmark summary for the accepted public packet</td>
     </tr>
     <tr>
       <td>`proofs/release_validation/security/secret_scan_report_20260225T104355Z.md`</td>
-      <td>Secret scan report for the Wave-1 release packet</td>
-    </tr>
-    <tr>
-      <td>`proofs/logs/hop_claim_matrix.md`</td>
-      <td>HOP claim-matrix falsification record</td>
+      <td>Secret scan report carried with this public audit packet</td>
     </tr>
   </tbody>
 </table>
 
-The proof corpus is the evidentiary spine of this release. If a claim
-is made about IMC Wave-1, the supporting artifact is in `proofs/`.
+Historical warehouse reports and runbooks remain source-truth lineage
+outside this reduced public packet.
 
 ---
 
 <p>
   <img src="../.github/assets/readme/section-bars/engineering-references.svg" alt="ENGINEERING REFERENCES" width="100%">
 </p>
-Use these stable in-repo references for claim vocabulary, evidence
-status (`VERIFIED`, `INFERRED`, `UNKNOWN`), and falsification posture:
+Use these stable in-repo references for the current public packet:
 
-- `proofs/CONSOLIDATED_PROOF_REPORT.md`
-- `proofs/logs/hop_claim_matrix.md`
+- `AUDITOR_PLAYBOOK.md`
+- `PUBLIC_AUDIT_LIMITS.md`
+- `docs/PUBLIC_AUDIT_SNAPSHOT_STAMP.md`
 
 ---
 

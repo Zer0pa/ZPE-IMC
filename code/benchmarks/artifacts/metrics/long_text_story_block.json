@@ -2,12 +2,12 @@
   "dataset_or_fixture": "inline:story_block",
   "deterministic": true,
   "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-  "latency_ms_p50": 0.8276,
-  "latency_ms_p95": 0.9092,
+  "latency_ms_p50": 0.7578,
+  "latency_ms_p95": 0.851,
   "notes": "category=long_text; profile=baseline; kind=text; iterations=45; warmup=5; determinism_hashes=5",
   "peak_memory_mb": 0.0163,
-  "run_id": "A4-BENCH-20260307T131414Z",
+  "run_id": "A4-BENCH-20260307T230025Z",
   "scenario": "long_text_story_block",
-  "throughput_tokens_per_sec": 473141.8342,
-  "timestamp_utc": "2026-03-07T13:14:15Z"
+  "throughput_tokens_per_sec": 510158.8594,
+  "timestamp_utc": "2026-03-07T23:00:25Z"
 }

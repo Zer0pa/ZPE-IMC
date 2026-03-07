@@ -300,17 +300,19 @@ Protected Architecture and should read `LICENSE` accordingly.
 **How do I verify a specific claim?**
 
 Every non-trivial claim in the technical documentation has an evidence
-path pointing to a repo-relative artifact. The entry point for
-IMC Wave-1 is:
+path pointing to a repo-relative artifact. For this reduced public audit
+packet, start with:
 
 ```text
-proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md
+proofs/logs/phase6_run_of_record_manifest.json
+proofs/logs/phase6_comet_run.txt
 ```
 
-For the full evidence index, consult the consolidated proof report:
-`proofs/CONSOLIDATED_PROOF_REPORT.md`. Artifact SHA256
-hashes in the listed records are the integrity anchors — compute
-locally and compare.
+Then use `docs/PUBLIC_AUDIT_SNAPSHOT_STAMP.md`,
+`PUBLIC_AUDIT_LIMITS.md`, and
+`proofs/release_validation/security/secret_scan_report_20260225T104355Z.md`
+as the public integrity anchors. Historical warehouse reports remain
+source-truth lineage outside this reduced public packet.
 
 ---
 

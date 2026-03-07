@@ -114,13 +114,17 @@ run-of-record records `169/169` tests PASS in
 `proofs/logs/phase6_comet_run.txt`. One historical portability note
 remains open as lineage, not as the current authority verdict:
 
+Public Triton integrity rule:
+- the public test surface validates `code/deployment/triton/model_repository/zpe_tokenizer_onnx/1/model.onnx` against the committed `model.integrity.json`
+- the byte-for-byte comparison against `proofs/artifacts/2026-02-24_program_maximal/A6/exported/zpe_tokenizer_op.onnx` is operator/private only and cleanly skips when that proof export is excluded from the snapshot
+
 - Historical taste-lane failures tied to legacy absolute paths were
   tracked as `R-TASTE-LEGACY-PATH-COUPLING`. Do not fix this class of
   issue by hardcoding your own paths — the correct fix is path
-  normalisation. If you are addressing this issue, see the risk
-  register in `proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md` and keep
-  the March 7 `169/169` authority result distinct from that historical
-  risk note.
+  normalisation. Keep the March 7 `169/169` authority result distinct
+  from that historical risk lineage and use `PUBLIC_AUDIT_LIMITS.md`
+  plus the current manifest/log pair as the public packet authority
+  root.
 
 CI runs `imc-ci.yml` on every PR. Your PR must pass CI before
 review begins. No exceptions.
@@ -181,7 +185,7 @@ external baseline cases. See `R-TOUCH-COMPARATOR-COVERAGE`.
   and IoT workstreams
 - PRs that inflate codec integrity claims into human-equivalence
   claims (scope discipline is a hard constraint — see `README.md`
-  and `proofs/CONSOLIDATED_PROOF_REPORT.md`)
+  and `PUBLIC_AUDIT_LIMITS.md`)
 - PRs without a passing CI run
 - PRs without evidence artifacts where the change touches codec
   behaviour, gate logic, or integration contracts
@@ -242,8 +246,8 @@ Before opening an issue, check:
 
 - The Open Risks section in `README.md` — your issue may already
   be documented and adjudicated
-- `proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md` — for
-  gate-level known issues
+- `PUBLIC_AUDIT_LIMITS.md` — for current public-packet limits and
+  known auditor-facing boundaries
 
 Use the issue templates in `.github/ISSUE_TEMPLATE/`. An issue
 without a reproducible case or an evidence path will be closed

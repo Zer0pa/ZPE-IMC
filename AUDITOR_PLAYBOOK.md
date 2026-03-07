@@ -53,6 +53,10 @@ python ./executable/run_with_comet.py
 For the public audit path, treat this as a local evidence run. `COMET_API_KEY`
 and `OPIK_API_KEY` are not required.
 
+Public Triton note:
+- the shipped Triton ONNX model is validated against the committed public integrity manifest at `code/deployment/triton/model_repository/zpe_tokenizer_onnx/1/model.integrity.json`
+- the byte-for-byte comparison against the A6 proof export is operator/private only and is not required for the public audit path
+
 5. Inspect the current authority artifacts:
 - `proofs/logs/phase6_run_of_record_manifest.json`
 - `proofs/logs/phase6_comet_run.txt`

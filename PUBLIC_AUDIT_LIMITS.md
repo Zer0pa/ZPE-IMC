@@ -7,7 +7,7 @@ engineering theory, licensing theory, or broad diligence questions.
 
 ## What The Public Audit Path Can Establish
 
-- the current public acquisition surface
+- the current provisioned acquisition surface
 - the current native runtime path (`backend='rust'`, `compiled_extension=True`, `fallback_used=False`)
 - the identity of the accepted March 7 run-of-record
 - the current benchmark/run identity and throughput ceiling
@@ -28,7 +28,7 @@ engineering theory, licensing theory, or broad diligence questions.
 
 | Limit | Current public state | Why it matters |
 |---|---|---|
-| Snapshot lag | The current public audit snapshot can lag the live working tree. | Outsiders may be looking at a weaker surface than the operator cites. |
+| Snapshot lag | The provisioned external auditor snapshot can lag the live working tree. | Outsiders may be looking at a weaker surface than the operator cites. |
 | Historical absolute paths | Some historical proof artifacts still contain machine-absolute paths. | Historical artifacts are evidence lineage, not ideal portable run instructions. |
 | Anchor density | `780`, `844`, `wave1.0`, and the March 7 run all coexist. | Without an authority matrix, readers can blur history, compatibility, and current truth. |
 | Private telemetry surfaces | Comet/Opik URLs are operator surfaces, not the public evidentiary root. | Public audit should rely on local shipped artifacts instead. |
@@ -63,6 +63,8 @@ No manual telemetry keys are required for the public audit path:
 - Read throughput numbers as `imc_stream_words/sec`, not natural-language words/sec.
 - Read image performance as deterministic mixed-stream transport evidence, not commodity image-codec supremacy.
 - Read smell and taste as real but bounded lanes, not unconstrained general claims.
+- Read the shipped Triton ONNX model as publicly auditable against its committed integrity manifest, not against the excluded `proofs/artifacts/**` warehouse.
+- Read byte-for-byte comparison against the A6 export as operator/private replay only.
 
 ## Use These Files Together
 
