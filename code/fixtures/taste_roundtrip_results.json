@@ -1,0 +1,115 @@
+{
+  "generated_at_utc": "2026-02-20T15:17:58Z",
+  "gate_b_pass": true,
+  "gate_c_pass": true,
+  "minimum_closure": {
+    "corpus_name": "minimum_closure_corpus",
+    "coverage_counts": {
+      "bitter": 1,
+      "salty": 2,
+      "sour": 1,
+      "sweet": 1,
+      "umami": 1
+    },
+    "encoded_word_count": 29,
+    "encoded_words_by_record": {
+      "bitter:16051948": [
+        525337,
+        590896,
+        656575,
+        656397,
+        656384
+      ],
+      "salty:4873": [
+        525329,
+        590880,
+        656575,
+        656397,
+        656384
+      ],
+      "salty:5234": [
+        525329,
+        590874,
+        656632,
+        656493,
+        656384
+      ],
+      "sour:311": [
+        525322,
+        591018,
+        656624,
+        656387
+      ],
+      "sweet:5988": [
+        525316,
+        590886,
+        656393,
+        656512,
+        656603
+      ],
+      "umami:23689119": [
+        525344,
+        590894,
+        656393,
+        656384,
+        656443
+      ]
+    },
+    "record_count": 6
+  },
+  "minimum_closure_corpus": {
+    "corpus_name": "minimum_closure_corpus",
+    "coverage_counts": {
+      "bitter": 1,
+      "salty": 2,
+      "sour": 1,
+      "sweet": 1,
+      "umami": 1
+    },
+    "encoded_word_count": 29,
+    "encoded_words_by_record": {
+      "bitter:16051948": [
+        525337,
+        590896,
+        656575,
+        656397,
+        656384
+      ],
+      "salty:4873": [
+        525329,
+        590880,
+        656575,
+        656397,
+        656384
+      ],
+      "salty:5234": [
+        525329,
+        590874,
+        656632,
+        656493,
+        656384
+      ],
+      "sour:311": [
+        525322,
+        591018,
+        656624,
+        656387
+      ],
+      "sweet:5988": [
+        525316,
+        590886,
+        656393,
+        656512,
+        656603
+      ],
+      "umami:23689119": [
+        525344,
+        590894,
+        656393,
+        656384,
+        656443
+      ]
+    },
+    "record_count": 6
+  }
+}

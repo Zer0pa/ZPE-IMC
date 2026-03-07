@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zpe-multimodal"
+# Internal package lineage version; public release tagging is tracked separately.
+version = "3.0.0"
+description = "ZPE Integrated Modality Codec with text/emoji/diagram/image/music/voice/mental/touch/smell+BPE"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Zer0paGlyph"}]
+license = {text = "LicenseRef-Zer0pa-SAL-6.0"}
+dependencies = [
+  "numpy",
+  "scipy",
+]
+
+[project.scripts]
+zpe-imc = "zpe_multimodal.cli:main"
+
+[project.optional-dependencies]
+diagram = ["svgpathtools"]
+music = ["music21"]
+voice-optional = ["soundfile", "g2p-en", "nltk"]
+voice-audio-heavy = ["librosa"]
+hf = ["transformers>=4.38", "huggingface-hub>=0.20"]
+onnx = ["onnx>=1.16", "onnxruntime>=1.18"]
+wasm = ["wasmtime>=18"]
+triton = ["tritonclient[http]>=2.41", "fastapi>=0.109", "uvicorn>=0.27"]
+bench = ["pytest-benchmark>=4.0", "psutil>=5.9"]
+full = ["svgpathtools", "music21"]
+dev = ["pytest", "build"]
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["zpe_multimodal*"]
+exclude = ["tests*"]

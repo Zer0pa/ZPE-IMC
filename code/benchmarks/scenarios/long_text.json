@@ -1,0 +1,20 @@
+[
+  {
+    "scenario": "long_text_repeated_paragraph",
+    "category": "long_text",
+    "kind": "text",
+    "dataset_or_fixture": "inline:repeated_paragraph_x128",
+    "iterations": 45,
+    "warmup_iterations": 5,
+    "text": "ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems. ZPE IMC unifies modality words into a deterministic stream for reproducible downstream systems."
+  },
+  {
+    "scenario": "long_text_story_block",
+    "category": "long_text",
+    "kind": "text",
+    "dataset_or_fixture": "inline:story_block",
+    "iterations": 45,
+    "warmup_iterations": 5,
+    "text": "At sunrise the control-plane warmed, benchmarks started, and every run replayed the same canonical payload. Engineers inspected traces, confirmed parity, and shipped only what stayed deterministic under repeated runs. The same sequence was replayed across environments and the resulting hashes remained identical, proving reproducible behavior for integration gates and serving rollout readiness."
+  }
+]

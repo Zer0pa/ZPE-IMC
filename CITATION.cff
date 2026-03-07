@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: >-
+  If you use ZPE-IMC, cite this repository record.
+type: software
+title: "ZPE-IMC: Zero-Point Encoding Integration and Multimodal Coordination"
+authors:
+  - given-names: Zer0pa
+    family-names: Architect-Prime
+  - name: Zer0pa Labs
+repository-code: https://github.com/Zer0pa/ZPE-IMC.git
+url: https://github.com/Zer0pa/ZPE-IMC.git
+license: LicenseRef-Zer0pa-SAL-6.0
+abstract: >-
+  ZPE-IMC is a deterministic, unified, CPU-native multimodal transport
+  system spanning eight transport lane families across ten user-facing
+  modalities, with integrated modality authority and the current
+  Rust-backed runtime path.
+keywords:
+  - multimodal encoding
+  - transport substrate
+  - codec
+  - signal processing
+  - integration contract
+  - falsifiability-first
+  - evidence discipline
+  - zero-point encoding
+  - N-primitive-directional-encoding
+  - D8-invariance
+  - haptic-encoding
+  - olfactory-encoding
+identifiers:
+  - type: other
+    value: >-
+      IMC wave1.0 compatibility vector SHA256:
+      9c8b905f6c1d30d057955aa9adf0f7ff9139853494dca673e5fbe69f24fba10e
+    description: Canonical coordination anchor for downstream integrations

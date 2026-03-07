@@ -1,0 +1,13 @@
+{
+  "dataset_or_fixture": "inline:emoji_faces_objects",
+  "deterministic": true,
+  "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
+  "latency_ms_p50": 0.5056,
+  "latency_ms_p95": 0.523,
+  "notes": "category=emoji_heavy; profile=baseline; kind=text; iterations=90; warmup=6; determinism_hashes=5",
+  "peak_memory_mb": 0.0095,
+  "run_id": "A4-BENCH-20260307T131414Z",
+  "scenario": "emoji_heavy_faces_and_objects",
+  "throughput_tokens_per_sec": 94455.4824,
+  "timestamp_utc": "2026-03-07T13:14:15Z"
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "scenario": "emoji_heavy_faces_and_objects",
+    "category": "emoji_heavy",
+    "kind": "text",
+    "dataset_or_fixture": "inline:emoji_faces_objects",
+    "iterations": 90,
+    "warmup_iterations": 6,
+    "text": "🙂🚀📦🔥✅🙂🚀📦🔥✅🙂🚀📦🔥✅🙂🚀📦🔥✅🙂🚀📦🔥✅"
+  },
+  {
+    "scenario": "emoji_heavy_zwj_and_skin_tones",
+    "category": "emoji_heavy",
+    "kind": "text",
+    "dataset_or_fixture": "inline:emoji_zwj_skin_tones",
+    "iterations": 90,
+    "warmup_iterations": 6,
+    "text": "👩🏽‍💻👨🏿‍🔧🧑🏻‍🚀👩🏾‍🔬👨🏼‍💼👩🏽‍💻👨🏿‍🔧🧑🏻‍🚀👩🏾‍🔬👨🏼‍💼"
+  }
+]

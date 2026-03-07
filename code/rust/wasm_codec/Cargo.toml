@@ -1,0 +1,17 @@
+[package]
+# Governed by the repository root LICENSE (SAL v6.0); use an SPDX-style
+# identifier here so fresh wheel installs do not depend on a path outside the
+# crate root.
+name = "zpe_wasm_codec"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "LicenseRef-Zer0pa-SAL-6.0"
+description = "WASM-safe text-parity bridge for ZPE-IMC"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+unicode-normalization = "0.1"
+wasm-bindgen = "0.2"

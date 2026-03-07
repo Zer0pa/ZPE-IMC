@@ -1,0 +1,636 @@
+{
+  "version": "v2a-current-mechanic-primitives",
+  "generated_utc": "2026-02-17T10:33:35Z",
+  "primitives": [
+    {
+      "name": "dot",
+      "description": "Point anchor",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "circle",
+      "description": "Closed rounded contour",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "square",
+      "description": "Box contour",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "triangle",
+      "description": "Triangular contour",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          2,
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "diamond",
+      "description": "Diamond contour",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "line_h",
+      "description": "Horizontal stroke",
+      "style_bits": 0,
+      "strokes": [
+        [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "line_v",
+      "description": "Vertical stroke",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "arc_up",
+      "description": "Upward arc",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          1,
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "arc_down",
+      "description": "Downward arc",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "arc_left",
+      "description": "Left arc",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "arc_right",
+      "description": "Right arc",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "eye_pair",
+      "description": "Two-eye marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "smile_curve",
+      "description": "Smile expression curve",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          0,
+          1,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "frown_curve",
+      "description": "Frown expression curve",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          0,
+          0,
+          0,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "tear_mark",
+      "description": "Tear/sweat marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          2,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "brow_mark",
+      "description": "Eyebrow marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "palm",
+      "description": "Palm base",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          2,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "finger_single",
+      "description": "Single finger",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          2,
+          1,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "finger_pair",
+      "description": "Two-finger marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "thumb_curve",
+      "description": "Thumb marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          1,
+          0,
+          1,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "arm_curve",
+      "description": "Arm segment",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          2,
+          0,
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "torso",
+      "description": "Torso marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          1,
+          0,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "head_node",
+      "description": "Head marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "leg_pair",
+      "description": "Leg marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          1,
+          1,
+          0,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "ear_pair",
+      "description": "Ear marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          0,
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "wing_curve",
+      "description": "Wing marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "tail_curve",
+      "description": "Tail marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          0,
+          0,
+          1,
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "leaf",
+      "description": "Leaf marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          1,
+          2,
+          0,
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "petal",
+      "description": "Petal marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "wheel",
+      "description": "Wheel marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          1,
+          2,
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "window",
+      "description": "Window/panel marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          2,
+          0,
+          0,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "star",
+      "description": "Star marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          1,
+          2,
+          2,
+          2,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "heart_outline",
+      "description": "Heart marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "cross_mark",
+      "description": "Cross marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          3,
+          3,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "flag_rect",
+      "description": "Flag base",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "stripe_h",
+      "description": "Horizontal stripe",
+      "style_bits": 0,
+      "strokes": [
+        [
+          3,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "stripe_v",
+      "description": "Vertical stripe",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          3,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "zwj_bridge",
+      "description": "ZWJ sequence bridge",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "name": "vs16_mark",
+      "description": "Variation selector marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "skin_tone_mark",
+      "description": "Skin tone modifier marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "name": "keycap_mark",
+      "description": "Keycap modifier marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          2
+        ]
+      ]
+    },
+    {
+      "name": "tag_mark",
+      "description": "Tag sequence marker",
+      "style_bits": 0,
+      "strokes": [
+        [
+          2,
+          0,
+          0,
+          2,
+          0,
+          0
+        ]
+      ]
+    }
+  ]
+}

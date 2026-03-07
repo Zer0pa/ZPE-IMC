@@ -1,0 +1,354 @@
+IMC DUAL LOGGING RUN
+status=PASS
+run_of_record_type=saturated_canonical
+canonical_measurement_mode=steady_state_parallel_batch
+canonical_measurement_scope=saturated_run_of_record
+single_core_prepass_reported=1
+single_core_prepass_measurement_mode=single_stream_single_process
+single_core_prepass_measurement_scope=single_stream_prepass
+classic_project_status=EXISTS
+classic_project_name=zpe-imc-performance
+classic_project_id=a3642ee2a0a84f3b91374fee4ec9049a
+classic_project_slug=(unset)
+classic_handshake_error=(none)
+opik_project_status=EXISTS
+opik_project_name=zpe-imc-canonical
+opik_project_id=019cc437-a361-7153-8c56-31499b25a62c
+opik_project_url=https://www.comet.com/opik/zer0pa/redirect/projects?name=ZPE-IMC-Canonical
+opik_trace_id=019cc86e-8dba-7218-92d6-8145ce071d16
+opik_trace_url=https://www.comet.com/opik/api/v1/session/redirect/projects/?trace_id=019cc86e-8dba-7218-92d6-8145ce071d16&path=aHR0cHM6Ly93d3cuY29tZXQuY29tL29waWsvYXBp
+opik_handshake_error=(none)
+proof_reference_mode=native_opik_attachments_with_explicit_reference_bundle
+proof_manifest_path=/Users/Zer0pa/ZPE-IMC-REPO/proofs/logs/phase6_run_of_record_manifest.json
+benchmark_report_path=/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/BENCHMARK_REPORT.md
+hotspot_profile_path=/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/HOTSPOT_PROFILE.md
+benchmark_metrics_dir=/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics
+telemetry_log_path=/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/telemetry/progressive_events.jsonl
+kernel_backend=rust
+kernel_backend_origin=pyo3_native_extension
+kernel_backend_native=1
+kernel_backend_compiled_extension=1
+kernel_backend_fallback_used=0
+kernel_backend_payload_layout=u32le_bytes+spans_v1
+kernel_backend_ffi_contract_version=imc_flat_u32le_v1
+kernel_backend_build_profile=release
+kernel_backend_module_name=zpe_imc_kernel.zpe_imc_kernel
+kernel_backend_module_file=/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/zpe_imc_kernel/zpe_imc_kernel.abi3.so
+kernel_backend_module_version=0.1.0
+rust_crate_path=/Users/Zer0pa/ZPE-IMC-REPO/code/rust/imc_kernel
+rust_extension_module=zpe_imc_kernel.zpe_imc_kernel
+opik_attachment_status=verified
+opik_attachment_requested_count=15
+opik_attachment_uploaded_count=15
+opik_attachment_verified_count=15
+classic_logging_enabled=1
+opik_logging_enabled=1
+tests_total=169
+tests_passed=169
+tests_failed=0
+sensation_regression_ok=1
+integrated_fidelity_ok=1
+cross_modal_roundtrip_ok=1
+benchmark_return_code=0
+benchmark_metric_files=11
+benchmark_metric_scalar_count=44
+benchmark_scenario_count=11
+benchmark_all_deterministic=1
+determinism_hash_match=1
+stream_word_count_smoke=882
+canonical_total_stream_word_count=1354752
+canonical_elapsed_sec=4.8944
+canonical_total_words_per_sec=276798.7185
+throughput_encode_words_per_sec=94104.7837
+throughput_decode_words_per_sec=296145.6735
+single_core_prepass_elapsed_sec=0.0141
+single_core_prepass_total_words_per_sec=62523.258
+single_core_prepass_encode_words_per_sec=74149.1677
+single_core_prepass_decode_words_per_sec=406301.6066
+canonical_measurement_steady_state_batch=1
+canonical_stream_valid=1
+modality_coverage_count=10
+modality_coverage_all=1
+canonical_cpu_core_multiplier=6.6995
+canonical_reran_for_cpu_saturation=1
+canonical_parallel_workers=8
+canonical_parallel_batch_iterations=192
+canonical_saturated_run_of_record=1
+kernel_backend_native=1
+kernel_backend_compiled_extension=1
+kernel_backend_fallback_used=0
+kernel_backend_normal_word_count=131
+classic_logging_enabled=1
+classic_logging_ok=1
+opik_logging_enabled=1
+opik_logging_ok=1
+opik_trace_logged=1
+opik_reference_bundle_logged=1
+opik_native_attachment_requested_count=15
+opik_native_attachment_uploaded_count=15
+opik_native_attachment_verified_count=15
+opik_native_attachment_verified=1
+benchmark_report_present=1
+hotspot_profile_present=1
+telemetry_log_present=1
+proof_manifest_present=1
+proof_bundle_complete=1
+proof_visibility_ok=1
+benchmark__emoji_heavy_faces_and_objects__latency_ms_p50=0.5056
+benchmark__emoji_heavy_faces_and_objects__latency_ms_p95=0.523
+benchmark__emoji_heavy_faces_and_objects__peak_memory_mb=0.0095
+benchmark__emoji_heavy_faces_and_objects__throughput_tokens_per_sec=94455.4824
+benchmark__emoji_heavy_zwj_and_skin_tones__latency_ms_p50=0.5369
+benchmark__emoji_heavy_zwj_and_skin_tones__latency_ms_p95=0.5601
+benchmark__emoji_heavy_zwj_and_skin_tones__peak_memory_mb=0.0086
+benchmark__emoji_heavy_zwj_and_skin_tones__throughput_tokens_per_sec=139510.1274
+benchmark__long_text_repeated_paragraph__latency_ms_p50=1.1808
+benchmark__long_text_repeated_paragraph__latency_ms_p95=1.2408
+benchmark__long_text_repeated_paragraph__peak_memory_mb=0.0323
+benchmark__long_text_repeated_paragraph__throughput_tokens_per_sec=644591.4643
+benchmark__long_text_story_block__latency_ms_p50=0.8276
+benchmark__long_text_story_block__latency_ms_p95=0.9092
+benchmark__long_text_story_block__peak_memory_mb=0.0163
+benchmark__long_text_story_block__throughput_tokens_per_sec=473141.8342
+benchmark__multilingual_global_mix_a__latency_ms_p50=0.5168
+benchmark__multilingual_global_mix_a__latency_ms_p95=0.5629
+benchmark__multilingual_global_mix_a__peak_memory_mb=0.0073
+benchmark__multilingual_global_mix_a__throughput_tokens_per_sec=187550.2028
+benchmark__multilingual_global_mix_b__latency_ms_p50=0.6013
+benchmark__multilingual_global_mix_b__latency_ms_p95=0.7325
+benchmark__multilingual_global_mix_b__peak_memory_mb=0.0088
+benchmark__multilingual_global_mix_b__throughput_tokens_per_sec=140186.2346
+benchmark__multimodal_full_stack_practical_image_256__latency_ms_p50=116.8902
+benchmark__multimodal_full_stack_practical_image_256__latency_ms_p95=118.6547
+benchmark__multimodal_full_stack_practical_image_256__peak_memory_mb=3.9447
+benchmark__multimodal_full_stack_practical_image_256__throughput_tokens_per_sec=315577.1287
+benchmark__multimodal_full_stack_practical_image_512__latency_ms_p50=343.804
+benchmark__multimodal_full_stack_practical_image_512__latency_ms_p95=346.2357
+benchmark__multimodal_full_stack_practical_image_512__peak_memory_mb=12.4531
+benchmark__multimodal_full_stack_practical_image_512__throughput_tokens_per_sec=345652.7026
+benchmark__multimodal_full_stack_small_image__latency_ms_p50=40.9779
+benchmark__multimodal_full_stack_small_image__latency_ms_p95=42.2351
+benchmark__multimodal_full_stack_small_image__peak_memory_mb=1.151
+benchmark__multimodal_full_stack_small_image__throughput_tokens_per_sec=222541.5042
+benchmark__short_text_hello_ascii__latency_ms_p50=0.377
+benchmark__short_text_hello_ascii__latency_ms_p95=0.3962
+benchmark__short_text_hello_ascii__peak_memory_mb=0.0065
+benchmark__short_text_hello_ascii__throughput_tokens_per_sec=39278.8313
+benchmark__short_text_punctuation_mix__latency_ms_p50=0.4077
+benchmark__short_text_punctuation_mix__latency_ms_p95=0.4296
+benchmark__short_text_punctuation_mix__peak_memory_mb=0.0068
+benchmark__short_text_punctuation_mix__throughput_tokens_per_sec=111554.9558
+count_text=75
+count_diagram=125
+count_music=50
+count_voice=27
+count_image=498
+count_bpe=3
+count_mental=39
+count_touch=30
+count_smell=17
+count_taste=18
+zpe_imc_e2e/truth/tests_pass_rate/final=1.0
+zpe_imc_e2e/truth/determinism_match/final=1.0
+zpe_imc_e2e/truth/imc_score/final=100.0
+zpe_imc_e2e/truth/transport_score/final=69.786971
+zpe_imc_e2e/truth/tests_passed/final=169.0
+zpe_imc_e2e/truth/tests_total/final=169.0
+zpe_imc_e2e/performance/words_per_sec/final=276798.7185
+zpe_imc_e2e/performance/run_duration_sec/final=4.8944
+zpe_imc_e2e/performance/gzip_ratio/final=0.236111
+zpe_imc_e2e/performance/stream_word_count/final=882.0
+zpe_imc_e2e/distribution/entropy_bits/final=2.173322
+zpe_imc_e2e/distribution/hhi_concentration/final=0.354181
+zpe_imc_e2e/distribution/max_share/final=0.564626
+zpe_imc_e2e/distribution/min_nonzero_share/final=0.003401
+zpe_imc_e2e/distribution/effective_modality_count/final=2.823414
+zpe_imc_e2e/distribution/horizontal_breadth/final=0.654235
+zpe_imc_e2e/distribution/vertical_dominance/final=0.564626
+zpe_imc_e2e/distribution/top2_pair_share/final=0.706349
+zpe_imc_e2e/distribution/top2_pair_balance/final=0.401284
+zpe_imc_e2e/distribution/bimodality_index/final=0.283447
+zpe_imc_e2e/distribution/top1_top2_gap/final=0.422902
+zpe_imc_e2e/transport/coverage/final=1.0
+zpe_imc_e2e/transport/safety/final=1.0
+zpe_imc_e2e/transport/reserved_mode_norm/final=0.14966
+zpe_imc_e2e/transport/entropy/final=0.654235
+zpe_imc_e2e/transport/hhi/final=0.645819
+zpe_imc_e2e/transport/max_share/final=0.435374
+zpe_imc_e2e/transport/throughput/final=1.0
+zpe_imc_e2e/modality_share/text/final=0.085034
+zpe_imc_e2e/modality_share/diagram/final=0.141723
+zpe_imc_e2e/modality_share/music/final=0.056689
+zpe_imc_e2e/modality_share/voice/final=0.030612
+zpe_imc_e2e/modality_share/image/final=0.564626
+zpe_imc_e2e/modality_share/bpe/final=0.003401
+zpe_imc_e2e/modality_share/mental/final=0.044218
+zpe_imc_e2e/modality_share/touch/final=0.034014
+zpe_imc_e2e/modality_share/smell/final=0.019274
+zpe_imc_e2e/modality_share/taste/final=0.020408
+zpe_imc_e2e/mode_share/normal/final=0.069161
+zpe_imc_e2e/mode_share/escape/final=0.015873
+zpe_imc_e2e/mode_share/extension/final=0.897959
+zpe_imc_e2e/mode_share/reserved/final=0.017007
+pytest_return_code=0
+sensation_regression_return_code=0
+integrated_fidelity_return_code=0
+cross_modal_roundtrip_return_code=0
+benchmark_return_code=0
+benchmark_run_id=A4-BENCH-20260307T131414Z
+canonical_stream_hash=60ea72d54cca27ae38ddd5628124fde8e1d2792000b24635bbd6d640e1bdff19
+canonical_cpu_core_multiplier=6.6995
+canonical_elapsed_sec=4.8944
+canonical_reran_for_cpu_saturation=1
+canonical_parallel_workers=8
+canonical_parallel_batch_iterations=192
+single_core_prepass_elapsed_sec=0.0141
+single_core_prepass_total_words_per_sec=62523.258
+single_core_prepass_encode_words_per_sec=74149.1677
+single_core_prepass_decode_words_per_sec=406301.6066
+canonical_total_words_per_sec=276798.7185
+throughput_encode_words_per_sec=94104.7837
+throughput_decode_words_per_sec=296145.6735
+determinism_probe_id=IMC_CANONICAL_DETERMINISM_PROBE_V1
+determinism_hash_a=8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57
+determinism_hash_b=8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57
+comet_experiment_key=1d08a49dfc2e4684bc3f537117df981d
+comet_experiment_url=https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d
+PYTEST_OUTPUT_HEAD
+........................................................................ [ 42%]
+........................................................................ [ 85%]
+.........................                                                [100%]
+=============================== warnings summary ===============================
+../.venv/lib/python3.14/site-packages/requests/__init__.py:113
+  /Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+169 passed, 1 warning in 30.28s
+/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/opik/rest_api/core/pydantic_utilities.py:13: UserWarning: Core Pydantic V1 functionality isn't compatible with Python 3.14 or greater.
+  from pydantic.v1.datetime_parse import parse_date as parse_date
+SENSATION_REGRESSION_OUTPUT_HEAD
+SENSATION_REGRESSION: PASS
+{
+  "mental_roundtrip": "10/10 PASS",
+  "mental_rle": 14,
+  "touch_roundtrip": "10/10 PASS",
+  "touch_simultaneity": {
+    "frame_id": 3,
+    "expected_contacts": 3,
+    "decoded_contacts": 3,
+    "cooccurrence_preserved": true,
+    "decode_meta": {
+      "consumed_touch_words": 15,
+      "header_words": 3,
+      "ignored_words": 0
+    }
+  },
+  "smell_roundtrip": "10/10 PASS",
+  "smell_augment": 8,
+  "clone": "PASS",
+  "dirty_data": "PASS",
+  "wobbly_ruler": "PASS",
+  "imc_promoted": {
+    "mental_direction_profiles": [
+      1,
+      0,
+      0
+    ],
+    "touch_blocks": 2,
+    "smell_records": 2
+  }
+}
+/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+INTEGRATED_FIDELITY_OUTPUT_HEAD
+INTEGRATED_FIDELITY: PASS
+{
+  "text_exact": true,
+  "diagram_mean_distance_px": 0.3400315970007878,
+  "music_divergence": {
+    "note_divergence": 0,
+    "timing_divergence": 0
+  },
+  "voice_stroke_count_preserved": true,
+  "image_psnr_db": 99.0,
+  "bpe_exact": true,
+  "mental_exact": true,
+  "touch_exact": true,
+  "smell_exact": true,
+  "modality_counts": {
+    "text": 45,
+    "diagram": 186,
+    "music": 50,
+    "voice": 70,
+    "image": 8794,
+    "bpe": 3,
+    "mental": 40,
+    "touch": 12,
+    "smell": 16,
+    "taste": 0
+  }
+}
+/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(
+CROSS_MODAL_ROUNDTRIP_OUTPUT_HEAD
+CROSS_MODAL_ROUNDTRIP: PASS
+{
+  "text_only": "PASS",
+  "text_diagram": {
+    "words": 36,
+    "diagram_blocks": 1
+  },
+  "text_music": {
+    "words": 58,
+    "music_blocks": 1
+  },
+  "text_voice": {
+    "words": 84,
+    "voice_blocks": 1
+  },
+  "text_image": {
+    "words": 22,
+    "image_blocks": 1,
+    "image_shape": [
+      32,
+      32,
+      3
+    ]
+  },
+  "all_modalities": {
+    "word_count": 215,
+    "modality_counts": {
+      "text": 61,
+      "diagram": 16,
+      "music": 50,
+      "voice": 70,
+      "image": 15,
+      "bpe": 3,
+      "mental": 0,
+      "touch": 0,
+      "smell": 0,
+      "taste": 0
+    },
+    "bpe_tokens": [
+      100,
+BENCHMARK_OUTPUT_HEAD
+{
+  "benchmark_report": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/BENCHMARK_REPORT.md",
+  "comet_notes": [
+    "COMET_API_KEY missing; writing local progressive telemetry mirror only."
+  ],
+  "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
+  "hotspot_report": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/HOTSPOT_PROFILE.md",
+  "metrics_dir": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics",
+  "profile_filter": "all",
+  "protocol_version": "WS3_BENCHMARK_PROTOCOL_2026-03-05",
+  "remote_comet_enabled": false,
+  "run_id": "A4-BENCH-20260307T131414Z",
+  "scenario_count": 11,
+  "scenario_count_selected": 11,
+  "scenario_limit": 0,
+  "telemetry_event_log": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/telemetry/progressive_events.jsonl"
+}
+/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/requests/__init__.py:113: RequestsDependencyWarning: urllib3 (2.6.3) or chardet (6.0.0.post1)/charset_normalizer (3.4.4) doesn't match a supported version!
+  warnings.warn(

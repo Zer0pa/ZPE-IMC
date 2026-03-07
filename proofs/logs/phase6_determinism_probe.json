@@ -1,0 +1,19 @@
+{
+  "canonical_hash": "8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57",
+  "hashes": [
+    "8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57",
+    "8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57",
+    "8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57",
+    "8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57",
+    "8c0d3840bce5b0b3f217c33389bdff7c8438da1129f4337fe21f983b274b7d57"
+  ],
+  "probe_bpe": [
+    7,
+    8,
+    9
+  ],
+  "probe_id": "IMC_CANONICAL_DETERMINISM_PROBE_V1",
+  "probe_text": "wave1 deterministic",
+  "runs": 5,
+  "stable": true
+}

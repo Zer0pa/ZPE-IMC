@@ -1,0 +1,20 @@
+[
+  {
+    "scenario": "multilingual_global_mix_a",
+    "category": "multilingual",
+    "kind": "text",
+    "dataset_or_fixture": "inline:multilingual_mix_a",
+    "iterations": 70,
+    "warmup_iterations": 6,
+    "text": "English baseline. Español con acentos. Français déjà vu. Deutsch straße. Português coração."
+  },
+  {
+    "scenario": "multilingual_global_mix_b",
+    "category": "multilingual",
+    "kind": "text",
+    "dataset_or_fixture": "inline:multilingual_mix_b",
+    "iterations": 70,
+    "warmup_iterations": 6,
+    "text": "日本語の確認。한국어 점검. العربية اختبار. हिन्दी जाँच. Русский проверка."
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "benchmark_report": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/BENCHMARK_REPORT.md",
+  "hotspot_report": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/HOTSPOT_PROFILE.md",
+  "metrics_dir": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics",
+  "note": "Standalone benchmark completed before wrapper-integrated rerun refreshed shared benchmark artifacts.",
+  "run_id": "IMC-RUST-KERNEL-PERF-20260307T032927Z"
+}

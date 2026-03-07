@@ -1,0 +1,28 @@
+{
+  "events": [
+    {
+      "dominant_quality": 0,
+      "secondary_quality": 4,
+      "intensity": 6,
+      "intensity_direction": 1,
+      "temporal_payload": [17, 49, 65],
+      "flavor_payload": [144, 33]
+    },
+    {
+      "dominant_quality": 3,
+      "secondary_quality": 1,
+      "intensity": 5,
+      "intensity_direction": 6,
+      "temporal_payload": [34, 82],
+      "flavor_payload": [12, 220, 7]
+    },
+    {
+      "dominant_quality": 2,
+      "secondary_quality": 0,
+      "intensity": 4,
+      "intensity_direction": 0,
+      "temporal_payload": [51],
+      "flavor_payload": [99]
+    }
+  ]
+}

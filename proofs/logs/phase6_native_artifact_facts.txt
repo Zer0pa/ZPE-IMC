@@ -1,0 +1,5 @@
+MODULE_PATH=/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/zpe_imc_kernel/zpe_imc_kernel.abi3.so
+/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/zpe_imc_kernel/zpe_imc_kernel.abi3.so: Mach-O 64-bit dynamically linked shared library x86_64
+80682057abf5be06af0a86549c2a52ea7d59e3824e88d9282d1d7fd44bf8ab46  /Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/zpe_imc_kernel/zpe_imc_kernel.abi3.so
+WHEEL_PATH=/Users/Zer0pa/ZPE-IMC-REPO/code/rust/imc_kernel/target/wheels/x86_64-apple-darwin/zpe_imc_kernel-0.1.0-cp310-abi3-macosx_10_12_x86_64.whl
+1aa09751a4f14693d31da32822852db9849d0592a6145c595985f077d2fe8dc4  /Users/Zer0pa/ZPE-IMC-REPO/code/rust/imc_kernel/target/wheels/x86_64-apple-darwin/zpe_imc_kernel-0.1.0-cp310-abi3-macosx_10_12_x86_64.whl

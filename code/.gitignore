@@ -1,0 +1,8 @@
+# Build / packaging residue
+*.egg-info/
+dist/
+build/
+
+# Local virtual environments
+.venv/
+.venv_*/

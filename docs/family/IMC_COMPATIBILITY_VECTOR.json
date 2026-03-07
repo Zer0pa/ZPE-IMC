@@ -1,0 +1,72 @@
+{
+  "contract_version": "wave1.0",
+  "imc_package_version": "3.0.0",
+  "word_layout": {
+    "bits_total": 20,
+    "mode_bits": [19, 18],
+    "version_bits": [17, 16],
+    "payload_bits": [15, 0],
+    "payload_mask": "0xFFFF"
+  },
+  "mode_semantics": {
+    "0": "normal_text_units",
+    "1": "escape_utf8_bytes",
+    "2": "extension_modality_words",
+    "3": "reserved_currently_mental_only"
+  },
+  "modality_markers": {
+    "diagram": "0x8000",
+    "music": "0x4000",
+    "voice": "0x2000",
+    "bpe": "0x1000",
+    "touch": "0x0800",
+    "smell": "0x0200",
+    "mental": "0x0100",
+    "taste": "0x0400",
+    "image_family_mask": "0x0C00",
+    "image_family_enhanced": "0x0400"
+  },
+  "dispatch_precedence": [
+    "mental_reserved",
+    "music",
+    "voice",
+    "diagram",
+    "bpe",
+    "taste_versioned_v1_v2_v3",
+    "touch_non_image",
+    "smell_non_image",
+    "mental_non_image",
+    "image_family",
+    "text_fallback"
+  ],
+  "canonical_demo_metrics": {
+    "stream": "executable/demo.py",
+    "total_words": 844,
+    "counts": {
+      "text": 52,
+      "diagram": 133,
+      "music": 42,
+      "voice": 70,
+      "image": 498,
+      "bpe": 3,
+      "mental": 7,
+      "touch": 4,
+      "smell": 6,
+      "taste": 29
+    }
+  },
+  "known_limits": [
+    "taste_and_enhanced_image_share_0x0400_payload_bit_and_require_versioned_dispatch",
+    "legacy_image_family_words_are_not_mixed_stream_default",
+    "diagram_svg_ingestion_requires_svgpathtools_extra",
+    "musicxml_ingestion_requires_music21_extra"
+  ],
+  "breaking_change_policy": {
+    "required_for_breaking_change": [
+      "contract_version_increment",
+      "downstream_bio_iot_replay",
+      "updated_release_note"
+    ],
+    "semver_rule": "major_or_contract_version_bump_for_word_layout_marker_or_dispatch_changes"
+  }
+}

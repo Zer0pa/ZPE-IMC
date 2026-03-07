@@ -1,0 +1,13 @@
+{
+  "dataset_or_fixture": "fixtures/simple_scale.musicxml + fixtures/test.wav + inline-svg + synthetic-image-512",
+  "deterministic": true,
+  "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
+  "latency_ms_p50": 343.804,
+  "latency_ms_p95": 346.2357,
+  "notes": "category=multimodal; profile=heavy; kind=multimodal; iterations=8; warmup=2; determinism_hashes=5",
+  "peak_memory_mb": 12.4531,
+  "run_id": "A4-BENCH-20260307T131414Z",
+  "scenario": "multimodal_full_stack_practical_image_512",
+  "throughput_tokens_per_sec": 345652.7026,
+  "timestamp_utc": "2026-03-07T13:14:20Z"
+}

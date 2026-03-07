@@ -1,0 +1,26 @@
+{
+  "name": "@zpe/imc-wasm",
+  "version": "0.1.0",
+  "private": true,
+  "description": "WASM text-parity wrapper for ZPE-IMC",
+  "type": "module",
+  "main": "src/index.js",
+  "files": [
+    "src",
+    "pkg",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "clean": "rm -rf pkg",
+    "build": "wasm-pack build ../rust/wasm_codec --target web --release --out-dir ../../wasm/pkg --out-name zpe_wasm_codec && rm -f ./pkg/.gitignore",
+    "test": "node ./scripts/run_contract.mjs"
+  },
+  "keywords": [
+    "zpe",
+    "imc",
+    "wasm"
+  ],
+  "license": "SEE LICENSE IN ../../LICENSE",
+  "licenseNote": "Governed by the repository root LICENSE (Zer0pa SAL v6.0); npm publication disabled."
+}

@@ -1,0 +1,56 @@
+{
+  "backend_info": {
+    "adapter_module": "zpe_multimodal.core.imc_native",
+    "backend": "rust",
+    "build_profile": "release",
+    "compiled_extension": true,
+    "fallback_used": false,
+    "ffi_contract_version": "imc_flat_u32le_v1",
+    "module_file": "/Users/Zer0pa/ZPE-IMC-REPO/.venv/lib/python3.14/site-packages/zpe_imc_kernel/zpe_imc_kernel.abi3.so",
+    "module_name": "zpe_imc_kernel.zpe_imc_kernel",
+    "module_suffix": ".so",
+    "module_version": "0.1.0",
+    "native": true,
+    "normal_word_count": 131,
+    "normal_word_registry_kind": "sorted_vec",
+    "origin": "pyo3_native_extension",
+    "payload_layout": "u32le_bytes+spans_v1",
+    "word_mask": 1048575
+  },
+  "modality_counts": {
+    "bpe": 3,
+    "diagram": 125,
+    "image": 498,
+    "mental": 39,
+    "music": 50,
+    "smell": 17,
+    "taste": 18,
+    "text": 75,
+    "touch": 30,
+    "voice": 27
+  },
+  "scan_contract": {
+    "chunk_modalities": [
+      "diagram",
+      "music",
+      "voice",
+      "image",
+      "mental",
+      "touch",
+      "smell",
+      "taste"
+    ],
+    "chunk_store_python_type": "KernelChunkStoreView",
+    "diagram_chunk_container_type": "tuple",
+    "diagram_chunk_count": 1,
+    "text_words_is_memoryview": true,
+    "text_words_length": 78,
+    "text_words_python_type": "memoryview",
+    "validation_errors": []
+  },
+  "stream_valid": true,
+  "stream_word_count": 882,
+  "taste_block_count": 1,
+  "text_length": 68,
+  "validation_errors": []
+}

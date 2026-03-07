@@ -1,0 +1,19 @@
+{
+  "name": "zpe_wasm_codec",
+  "type": "module",
+  "description": "WASM-safe text-parity bridge for ZPE-IMC",
+  "version": "0.1.0",
+  "private": true,
+  "license": "SEE LICENSE IN ../../../LICENSE",
+  "licenseNote": "Governed by the repository root LICENSE (Zer0pa SAL v6.0); npm publication disabled.",
+  "files": [
+    "zpe_wasm_codec_bg.wasm",
+    "zpe_wasm_codec.js",
+    "zpe_wasm_codec.d.ts"
+  ],
+  "main": "zpe_wasm_codec.js",
+  "types": "zpe_wasm_codec.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}

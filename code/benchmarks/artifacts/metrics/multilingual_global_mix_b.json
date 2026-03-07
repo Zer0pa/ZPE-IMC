@@ -1,0 +1,13 @@
+{
+  "dataset_or_fixture": "inline:multilingual_mix_b",
+  "deterministic": true,
+  "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
+  "latency_ms_p50": 0.6013,
+  "latency_ms_p95": 0.7325,
+  "notes": "category=multilingual; profile=baseline; kind=text; iterations=70; warmup=6; determinism_hashes=5",
+  "peak_memory_mb": 0.0088,
+  "run_id": "A4-BENCH-20260307T131414Z",
+  "scenario": "multilingual_global_mix_b",
+  "throughput_tokens_per_sec": 140186.2346,
+  "timestamp_utc": "2026-03-07T13:14:15Z"
+}

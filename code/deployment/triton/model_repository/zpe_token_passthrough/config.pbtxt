@@ -1,0 +1,23 @@
+name: "zpe_token_passthrough"
+backend: "python"
+max_batch_size: 0
+input [
+  {
+    name: "token_ids"
+    data_type: TYPE_INT64
+    dims: [ -1 ]
+  }
+]
+output [
+  {
+    name: "token_ids_out"
+    data_type: TYPE_INT64
+    dims: [ -1 ]
+  }
+]
+instance_group [
+  {
+    kind: KIND_CPU
+    count: 1
+  }
+]

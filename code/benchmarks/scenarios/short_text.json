@@ -1,0 +1,20 @@
+[
+  {
+    "scenario": "short_text_hello_ascii",
+    "category": "short_text",
+    "kind": "text",
+    "dataset_or_fixture": "inline:hello_ascii",
+    "iterations": 120,
+    "warmup_iterations": 8,
+    "text": "Hello, ZPE IMC!"
+  },
+  {
+    "scenario": "short_text_punctuation_mix",
+    "category": "short_text",
+    "kind": "text",
+    "dataset_or_fixture": "inline:punctuation_mix",
+    "iterations": 120,
+    "warmup_iterations": 8,
+    "text": "Encode/decode parity test: []{}() <> !? ,.;:'\""
+  }
+]

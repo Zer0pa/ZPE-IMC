@@ -1,0 +1,45 @@
+name: "zpe_tokenizer_ensemble"
+platform: "ensemble"
+max_batch_size: 0
+input [
+  {
+    name: "INPUT_TEXT"
+    data_type: TYPE_STRING
+    dims: [ -1 ]
+  }
+]
+output [
+  {
+    name: "TOKEN_IDS"
+    data_type: TYPE_INT64
+    dims: [ -1 ]
+  }
+]
+ensemble_scheduling {
+  step [
+    {
+      model_name: "zpe_tokenizer_onnx"
+      model_version: -1
+      input_map {
+        key: "input_text"
+        value: "INPUT_TEXT"
+      }
+      output_map {
+        key: "token_ids"
+        value: "TOKEN_IDS_RAW"
+      }
+    },
+    {
+      model_name: "zpe_token_passthrough"
+      model_version: -1
+      input_map {
+        key: "token_ids"
+        value: "TOKEN_IDS_RAW"
+      }
+      output_map {
+        key: "token_ids_out"
+        value: "TOKEN_IDS"
+      }
+    }
+  ]
+}
