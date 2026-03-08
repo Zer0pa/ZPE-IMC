@@ -123,8 +123,8 @@ may carry valuable lineage, but neither outranks the source repo’s
 current authority artifacts.
 
 Current external auditor acquisition surface:
-`https://github.com/Zer0pa/ZPE-IMC.git`. Use that public clone target
-for current verification.
+`https://github.com/Zer0pa/ZPE-IMC.git`. Use that provisioned clone
+target rather than the earlier dead clone guidance.
 
 ---
 
@@ -196,11 +196,11 @@ Expected current runtime facts:
 - `compiled_extension=True`
 - `fallback_used=False`
 
-Current runtime authority is the current shipped March 7 operator run recorded in
+Current runtime authority is the later March 7 accepted run recorded in
 `proofs/logs/phase6_run_of_record_manifest.json` and
 `proofs/logs/phase6_comet_run.txt`. The accepted run is
-`IMC-Canonical-20260307T225939Z` with `170/170` tests passing and
-`benchmark_run_id=A4-BENCH-20260307T230025Z`.
+`IMC-Canonical-20260307T131330Z` with `169/169` tests passing and
+`benchmark_run_id=A4-BENCH-20260307T131414Z`.
 
 ---
 

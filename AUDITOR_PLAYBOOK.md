@@ -91,12 +91,12 @@ Reference/operator artifacts remain available separately:
 | `780` historical split note | historical anchor | chronology only | current runtime verdict |
 | `844` Wave-1 demo / `wave1.0` mixed-stream anchor | compatibility anchor | downstream compatibility and historical demo custody | current operator truth |
 | `docs/family/IMC_COMPATIBILITY_VECTOR.json` SHA256 `9c8b905f6c1d30d057955aa9adf0f7ff9139853494dca673e5fbe69f24fba10e` | compatibility anchor | family pinning and downstream coordination | current saturated run identity |
-| `IMC-Canonical-20260307T225939Z` | current operator truth | current shipped March 7 run-of-record identity | historical-only context |
-| `A4-BENCH-20260307T230025Z` | current operator truth | current shipped benchmark identity | generic marketing claim |
+| `IMC-Canonical-20260307T131330Z` | current operator truth | accepted March 7 run-of-record identity | historical-only context |
+| `A4-BENCH-20260307T131414Z` | current operator truth | accepted benchmark identity | generic marketing claim |
 | `backend=rust`, `compiled_extension=1`, `fallback_used=0` | current operator truth | runtime-path verification | optional preference |
 | `170 passed` in a full operator tree | current operator truth | accepted full-lane verdict when the private A6 Triton export is present | compatibility contract |
 | `169 passed, 1 skipped` in the public snapshot | current public audit truth | honest public rerun verdict when the operator-only A6 Triton check is intentionally skipped | full private/operator lane |
-| `canonical_total_words_per_sec=286165.1102` | current operator truth | current shipped throughput ceiling in `imc_stream_words/sec` | natural-language words/sec or generic media-codec supremacy |
+| `canonical_total_words_per_sec=276798.7185` | current operator truth | accepted throughput ceiling in `imc_stream_words/sec` | natural-language words/sec or generic media-codec supremacy |
 
 If you only remember one rule: `844` is frozen compatibility truth and historical demo context; the March 7 run/log pair is current operator truth.
 
@@ -121,19 +121,15 @@ Manual API keys are also not required for the public audit path:
 
 ## Expected Current Truth
 
-Current operator truth is the current shipped March 7 run:
-- `run_name=IMC-Canonical-20260307T225939Z`
-- `benchmark_run_id=A4-BENCH-20260307T230025Z`
+Current operator truth is the later March 7 accepted run:
+- `run_name=IMC-Canonical-20260307T131330Z`
+- `benchmark_run_id=A4-BENCH-20260307T131414Z`
 - `tests_passed=170`
 - `tests_skipped=0`
 - `tests_total=170`
-- `canonical_total_words_per_sec=286165.1102`
-- `throughput_encode_words_per_sec=64846.8071`
-- `throughput_decode_words_per_sec=199119.0278`
-
-Latest public live workbook twin remains the older March 7 Comet run
-listed in `README.md` under `Public ML Workbooks`. Treat it as public
-observability lineage, not as the exact shipped operator packet.
+- `canonical_total_words_per_sec=276798.7185`
+- `throughput_encode_words_per_sec=94104.7837`
+- `throughput_decode_words_per_sec=296145.6735`
 
 Current public audit truth in the public snapshot is the local rerun bundle:
 - `tests_passed=169`

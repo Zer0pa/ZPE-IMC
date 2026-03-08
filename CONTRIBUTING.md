@@ -89,10 +89,6 @@ For the current operator-style proof rerun, use:
 python ./executable/run_with_comet.py
 ```
 
-Default output hygiene:
-- local reruns write a stamped bundle under `proofs/reruns/IMC-Canonical-<UTC timestamp>/`
-- shipped operator reference artifacts in `proofs/logs/` and `code/benchmarks/artifacts/` remain stable and are not overwritten by the default rerun
-
 Expected backend facts:
 - `backend='rust'`
 - `compiled_extension=True`
@@ -113,25 +109,17 @@ path.
 pytest code
 ```
 
-All tests must pass before a PR is opened. Current test truth is lane-specific:
-
-- full operator tree with the private A6 Triton export present: `170 passed`
-- public snapshot without that private/operator artifact: `169 passed, 1 skipped`
-
-The public skip is intentional and limited to the operator-only Triton
-byte-identity check. One historical portability note remains open as
-lineage, not as the current authority verdict:
-
-Public Triton integrity rule:
-- the public test surface validates `code/deployment/triton/model_repository/zpe_tokenizer_onnx/1/model.onnx` against the committed `model.integrity.json`
-- the byte-for-byte comparison against `proofs/artifacts/2026-02-24_program_maximal/A6/exported/zpe_tokenizer_op.onnx` is operator/private only and cleanly skips when that proof export is excluded from the snapshot
+All tests must pass before a PR is opened. The accepted March 7
+run-of-record records `169/169` tests PASS in
+`proofs/logs/phase6_comet_run.txt`. One historical portability note
+remains open as lineage, not as the current authority verdict:
 
 - Historical taste-lane failures tied to legacy absolute paths were
   tracked as `R-TASTE-LEGACY-PATH-COUPLING`. Do not fix this class of
   issue by hardcoding your own paths — the correct fix is path
   normalisation. If you are addressing this issue, see the risk
   register in `proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md` and keep
-  the operator/public March 7 authority split distinct from that historical
+  the March 7 `169/169` authority result distinct from that historical
   risk note.
 
 CI runs `imc-ci.yml` on every PR. Your PR must pass CI before

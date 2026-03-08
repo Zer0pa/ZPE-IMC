@@ -61,10 +61,10 @@ Expected backend facts:
 - `ffi_contract_version='imc_flat_u32le_v1'`
 
 Current accepted run facts:
-- `run_name='IMC-Canonical-20260307T225939Z'`
-- `benchmark_run_id='A4-BENCH-20260307T230025Z'`
-- `tests_passed=170`
-- `canonical_total_words_per_sec=286165.1102`
+- `run_name='IMC-Canonical-20260307T131330Z'`
+- `benchmark_run_id='A4-BENCH-20260307T131414Z'`
+- `tests_passed=169`
+- `canonical_total_words_per_sec=276798.7185`
 
 The older `wave1.0` / `total_words=844` demo value remains frozen contract
 and historical demo truth only. It is not the package/runtime authority path.

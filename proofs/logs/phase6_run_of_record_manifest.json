@@ -62,156 +62,156 @@
       "benchmark__short_text_punctuation_mix__peak_memory_mb",
       "benchmark__short_text_punctuation_mix__throughput_tokens_per_sec"
     ],
-    "run_id": "A4-BENCH-20260307T230025Z",
+    "run_id": "A4-BENCH-20260307T131414Z",
     "scenario_count": 11,
     "scenario_rows": [
       {
         "dataset_or_fixture": "inline:emoji_faces_objects",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.5091,
-        "latency_ms_p95": 0.6012,
+        "latency_ms_p50": 0.5056,
+        "latency_ms_p95": 0.523,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/emoji_heavy_faces_and_objects.json",
         "peak_memory_mb": 0.0095,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "emoji_heavy_faces_and_objects",
-        "throughput_tokens_per_sec": 91601.8438
+        "throughput_tokens_per_sec": 94455.4824
       },
       {
         "dataset_or_fixture": "inline:emoji_zwj_skin_tones",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.5282,
-        "latency_ms_p95": 0.5964,
+        "latency_ms_p50": 0.5369,
+        "latency_ms_p95": 0.5601,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/emoji_heavy_zwj_and_skin_tones.json",
         "peak_memory_mb": 0.0086,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "emoji_heavy_zwj_and_skin_tones",
-        "throughput_tokens_per_sec": 139184.4497
+        "throughput_tokens_per_sec": 139510.1274
       },
       {
         "dataset_or_fixture": "inline:repeated_paragraph_x128",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 1.1415,
-        "latency_ms_p95": 1.2802,
+        "latency_ms_p50": 1.1808,
+        "latency_ms_p95": 1.2408,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/long_text_repeated_paragraph.json",
         "peak_memory_mb": 0.0323,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "long_text_repeated_paragraph",
-        "throughput_tokens_per_sec": 660414.5879
+        "throughput_tokens_per_sec": 644591.4643
       },
       {
         "dataset_or_fixture": "inline:story_block",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.7578,
-        "latency_ms_p95": 0.851,
+        "latency_ms_p50": 0.8276,
+        "latency_ms_p95": 0.9092,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/long_text_story_block.json",
         "peak_memory_mb": 0.0163,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "long_text_story_block",
-        "throughput_tokens_per_sec": 510158.8594
+        "throughput_tokens_per_sec": 473141.8342
       },
       {
         "dataset_or_fixture": "inline:multilingual_mix_a",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.4921,
-        "latency_ms_p95": 0.5818,
+        "latency_ms_p50": 0.5168,
+        "latency_ms_p95": 0.5629,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/multilingual_global_mix_a.json",
         "peak_memory_mb": 0.0073,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "multilingual_global_mix_a",
-        "throughput_tokens_per_sec": 194124.1343
+        "throughput_tokens_per_sec": 187550.2028
       },
       {
         "dataset_or_fixture": "inline:multilingual_mix_b",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.6075,
-        "latency_ms_p95": 0.7496,
+        "latency_ms_p50": 0.6013,
+        "latency_ms_p95": 0.7325,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/multilingual_global_mix_b.json",
         "peak_memory_mb": 0.0088,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "multilingual_global_mix_b",
-        "throughput_tokens_per_sec": 138174.991
+        "throughput_tokens_per_sec": 140186.2346
       },
       {
         "dataset_or_fixture": "fixtures/simple_scale.musicxml + fixtures/test.wav + inline-svg + synthetic-image-256",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 122.1424,
-        "latency_ms_p95": 123.2996,
+        "latency_ms_p50": 116.8902,
+        "latency_ms_p95": 118.6547,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/multimodal_full_stack_practical_image_256.json",
-        "peak_memory_mb": 3.9448,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "peak_memory_mb": 3.9447,
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "multimodal_full_stack_practical_image_256",
-        "throughput_tokens_per_sec": 301754.7934
+        "throughput_tokens_per_sec": 315577.1287
       },
       {
         "dataset_or_fixture": "fixtures/simple_scale.musicxml + fixtures/test.wav + inline-svg + synthetic-image-512",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 365.0939,
-        "latency_ms_p95": 435.5511,
+        "latency_ms_p50": 343.804,
+        "latency_ms_p95": 346.2357,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/multimodal_full_stack_practical_image_512.json",
-        "peak_memory_mb": 12.453,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "peak_memory_mb": 12.4531,
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "multimodal_full_stack_practical_image_512",
-        "throughput_tokens_per_sec": 311275.9898
+        "throughput_tokens_per_sec": 345652.7026
       },
       {
         "dataset_or_fixture": "fixtures/simple_scale.musicxml + fixtures/test.wav + inline-svg + synthetic-image-64",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 43.4814,
-        "latency_ms_p95": 47.1098,
+        "latency_ms_p50": 40.9779,
+        "latency_ms_p95": 42.2351,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/multimodal_full_stack_small_image.json",
-        "peak_memory_mb": 1.1504,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "peak_memory_mb": 1.151,
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "multimodal_full_stack_small_image",
-        "throughput_tokens_per_sec": 207990.4426
+        "throughput_tokens_per_sec": 222541.5042
       },
       {
         "dataset_or_fixture": "inline:hello_ascii",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.3913,
-        "latency_ms_p95": 0.492,
+        "latency_ms_p50": 0.377,
+        "latency_ms_p95": 0.3962,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/short_text_hello_ascii.json",
         "peak_memory_mb": 0.0065,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "short_text_hello_ascii",
-        "throughput_tokens_per_sec": 37500.615
+        "throughput_tokens_per_sec": 39278.8313
       },
       {
         "dataset_or_fixture": "inline:punctuation_mix",
         "deterministic": 1,
         "git_commit": "e316ddd77805fc59040b9d6a687c1241fe40eabc",
-        "latency_ms_p50": 0.4228,
-        "latency_ms_p95": 0.4984,
+        "latency_ms_p50": 0.4077,
+        "latency_ms_p95": 0.4296,
         "metric_file_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics/short_text_punctuation_mix.json",
         "peak_memory_mb": 0.0068,
-        "run_id": "A4-BENCH-20260307T230025Z",
+        "run_id": "A4-BENCH-20260307T131414Z",
         "scenario": "short_text_punctuation_mix",
-        "throughput_tokens_per_sec": 105761.1425
+        "throughput_tokens_per_sec": 111554.9558
       }
     ]
   },
   "classic_comet": {
-    "experiment_key": "",
-    "experiment_url": "",
-    "project_id": "",
-    "project_name": "ZPE-IMC-Performance",
+    "experiment_key": "1d08a49dfc2e4684bc3f537117df981d",
+    "experiment_url": "https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d",
+    "project_id": "a3642ee2a0a84f3b91374fee4ec9049a",
+    "project_name": "zpe-imc-performance",
     "project_slug": "",
-    "project_status": "DISABLED"
+    "project_status": "EXISTS"
   },
-  "generated_at_utc": "2026-03-07T23:01:04Z",
+  "generated_at_utc": "2026-03-07T13:15:01Z",
   "live_urls": {
-    "classic_comet_experiment_url": "",
-    "opik_project_url": "",
-    "opik_trace_url": ""
+    "classic_comet_experiment_url": "https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d",
+    "opik_project_url": "https://www.comet.com/opik/zer0pa/redirect/projects?name=ZPE-IMC-Canonical",
+    "opik_trace_url": "https://www.comet.com/opik/api/v1/session/redirect/projects/?trace_id=019cc86e-8dba-7218-92d6-8145ce071d16&path=aHR0cHM6Ly93d3cuY29tZXQuY29tL29waWsvYXBp"
   },
   "metric_names_landed": [
     "benchmark__emoji_heavy_faces_and_objects__latency_ms_p50",
@@ -276,7 +276,6 @@
     "canonical_total_words_per_sec",
     "classic_logging_enabled",
     "classic_logging_ok",
-    "classic_remote_enabled",
     "count_bpe",
     "count_diagram",
     "count_image",
@@ -304,7 +303,6 @@
     "opik_native_attachment_verified",
     "opik_native_attachment_verified_count",
     "opik_reference_bundle_logged",
-    "opik_remote_enabled",
     "opik_trace_logged",
     "proof_bundle_complete",
     "proof_manifest_present",
@@ -491,13 +489,13 @@
     "zpe_imc_e2e/truth/transport_score/trend"
   ],
   "opik": {
-    "project_id": "",
-    "project_name": "ZPE-IMC-Canonical",
-    "project_status": "DISABLED",
-    "project_url": "",
-    "proof_reference_mode": "local_reference_bundle_only",
-    "trace_id": "",
-    "trace_url": ""
+    "project_id": "019cc437-a361-7153-8c56-31499b25a62c",
+    "project_name": "zpe-imc-canonical",
+    "project_status": "EXISTS",
+    "project_url": "https://www.comet.com/opik/zer0pa/redirect/projects?name=ZPE-IMC-Canonical",
+    "proof_reference_mode": "native_opik_attachments_with_explicit_reference_bundle",
+    "trace_id": "019cc86e-8dba-7218-92d6-8145ce071d16",
+    "trace_url": "https://www.comet.com/opik/api/v1/session/redirect/projects/?trace_id=019cc86e-8dba-7218-92d6-8145ce071d16&path=aHR0cHM6Ly93d3cuY29tZXQuY29tL29waWsvYXBp"
   },
   "paths": {
     "benchmark_metrics_dir": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/metrics",
@@ -511,17 +509,17 @@
     "telemetry_log": "/Users/Zer0pa/ZPE-IMC-REPO/code/benchmarks/artifacts/telemetry/progressive_events.jsonl"
   },
   "run_kind": "canonical-promotion",
-  "run_name": "IMC-Canonical-20260307T225939Z",
+  "run_name": "IMC-Canonical-20260307T131330Z",
   "run_of_record": {
-    "canonical_cpu_core_multiplier": 5.3614,
-    "canonical_elapsed_sec": 12.6244,
+    "canonical_cpu_core_multiplier": 6.6995,
+    "canonical_elapsed_sec": 4.8944,
     "canonical_measurement_mode": "steady_state_parallel_batch",
     "canonical_measurement_scope": "saturated_run_of_record",
-    "canonical_parallel_batch_iterations": 512,
+    "canonical_parallel_batch_iterations": 192,
     "canonical_parallel_workers": 8,
     "canonical_reran_for_cpu_saturation": true,
     "canonical_stream_hash": "60ea72d54cca27ae38ddd5628124fde8e1d2792000b24635bbd6d640e1bdff19",
-    "canonical_total_words_per_sec": 286165.1102,
+    "canonical_total_words_per_sec": 276798.7185,
     "kernel_backend": "rust",
     "kernel_backend_build_profile": "release",
     "kernel_backend_compiled_extension": 1,
@@ -535,18 +533,18 @@
     "kernel_backend_payload_layout": "u32le_bytes+spans_v1",
     "rust_crate_path": "/Users/Zer0pa/ZPE-IMC-REPO/code/rust/imc_kernel",
     "rust_extension_module": "zpe_imc_kernel.zpe_imc_kernel",
-    "single_core_prepass_decode_words_per_sec": 325248.4727,
-    "single_core_prepass_elapsed_sec": 0.0196,
-    "single_core_prepass_encode_words_per_sec": 52366.459,
+    "single_core_prepass_decode_words_per_sec": 406301.6066,
+    "single_core_prepass_elapsed_sec": 0.0141,
+    "single_core_prepass_encode_words_per_sec": 74149.1677,
     "single_core_prepass_measurement_mode": "single_stream_single_process",
     "single_core_prepass_measurement_scope": "single_stream_prepass",
     "single_core_prepass_reported": true,
     "single_core_prepass_stream_hash": "60ea72d54cca27ae38ddd5628124fde8e1d2792000b24635bbd6d640e1bdff19",
-    "single_core_prepass_total_words_per_sec": 45004.0283,
+    "single_core_prepass_total_words_per_sec": 62523.258,
     "stream_word_count": 882,
-    "throughput_decode_words_per_sec": 199119.0278,
-    "throughput_encode_words_per_sec": 64846.8071,
-    "total_stream_word_count": 3612672,
+    "throughput_decode_words_per_sec": 296145.6735,
+    "throughput_encode_words_per_sec": 94104.7837,
+    "total_stream_word_count": 1354752,
     "type": "saturated_canonical",
     "word_unit": "imc_stream_words"
   },
@@ -571,8 +569,8 @@
     "pytest": {
       "return_code": 0,
       "tests_failed": 0,
-      "tests_passed": 170,
-      "tests_total": 170
+      "tests_passed": 169,
+      "tests_total": 169
     },
     "stream_valid": true,
     "voice_capability_mode": "full"
