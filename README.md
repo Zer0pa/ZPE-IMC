@@ -1,5 +1,3 @@
-<h1 align="center">ZPE-IMC</h1>
-
 <p align="center">
   <img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE-IMC Masthead" width="100%">
 </p>
