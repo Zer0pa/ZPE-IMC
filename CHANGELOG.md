@@ -40,7 +40,7 @@ Pre-release legal/package normalization landing.
   authority snapshot ahead of the first tagged public release, rather
   than as live packaged release guidance
 - Active acquisition/reporting links now point to the provisioned
-  public audit snapshot surface instead of the earlier dead
+  external auditor snapshot surface instead of the earlier dead
   front-door repo path
 - Root `LICENSE` authority is now carried consistently across the
   Python, native Rust, and WASM package surfaces

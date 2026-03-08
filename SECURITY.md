@@ -10,7 +10,7 @@ package and its proof corpus. It does not cover downstream
 workstreams (ZPE-Bio, ZPE-IoT) — report vulnerabilities in those
 repos directly.
 
-Current public audit acquisition surface:
+Current provisioned external auditor acquisition surface:
 `https://github.com/Zer0pa/ZPE-IMC.git`
 
 What counts as a security issue in this repo:

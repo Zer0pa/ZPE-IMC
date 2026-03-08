@@ -30,6 +30,9 @@ python -m pip install -e "./code[full,bench,dev]"
 ./code/rust/imc_kernel/build_install.sh
 ```
 
+The editable install exposes the canonical `zpe_multimodal.*` package surface
+used by the live public pytest path.
+
 3. Verify backend truth:
 
 ```bash
@@ -44,7 +47,7 @@ Expected current backend facts:
 - `compiled_extension=True`
 - `fallback_used=False`
 
-4. Run the local-only operator wrapper:
+4. Run the local-only wrapper:
 
 ```bash
 python ./executable/run_with_comet.py
@@ -53,11 +56,30 @@ python ./executable/run_with_comet.py
 For the public audit path, treat this as a local evidence run. `COMET_API_KEY`
 and `OPIK_API_KEY` are not required.
 
+Optional direct public pytest replay after the editable install:
+
+```bash
+python -m pytest code -q
+```
+
+Expected public snapshot truth:
+- `169 passed, 1 skipped`
+- the intentional skip is the operator-only A6 Triton byte-identity check
+
+Output hygiene note:
+- the default rerun writes a stamped local bundle under `proofs/reruns/IMC-Canonical-<UTC timestamp>/`
+- shipped reference artifacts in `proofs/logs/` and `code/benchmarks/artifacts/` remain stable operator reference artifacts and are not overwritten by the default public/local rerun
+
 Public Triton note:
 - the shipped Triton ONNX model is validated against the committed public integrity manifest at `code/deployment/triton/model_repository/zpe_tokenizer_onnx/1/model.integrity.json`
 - the byte-for-byte comparison against the A6 proof export is operator/private only and is not required for the public audit path
 
-5. Inspect the current authority artifacts:
+5. Inspect the rerun bundle you just created:
+- `proofs/reruns/IMC-Canonical-<UTC timestamp>/phase6_run_of_record_manifest.json`
+- `proofs/reruns/IMC-Canonical-<UTC timestamp>/phase6_comet_run.txt`
+- `proofs/reruns/IMC-Canonical-<UTC timestamp>/benchmarks/BENCHMARK_REPORT.md`
+
+Reference/operator artifacts remain available separately:
 - `proofs/logs/phase6_run_of_record_manifest.json`
 - `proofs/logs/phase6_comet_run.txt`
 - `code/benchmarks/artifacts/BENCHMARK_REPORT.md`
@@ -69,11 +91,12 @@ Public Triton note:
 | `780` historical split note | historical anchor | chronology only | current runtime verdict |
 | `844` Wave-1 demo / `wave1.0` mixed-stream anchor | compatibility anchor | downstream compatibility and historical demo custody | current operator truth |
 | `docs/family/IMC_COMPATIBILITY_VECTOR.json` SHA256 `9c8b905f6c1d30d057955aa9adf0f7ff9139853494dca673e5fbe69f24fba10e` | compatibility anchor | family pinning and downstream coordination | current saturated run identity |
-| `IMC-Canonical-20260307T131330Z` | current operator truth | accepted March 7 run-of-record identity | historical-only context |
-| `A4-BENCH-20260307T131414Z` | current operator truth | accepted benchmark identity | generic marketing claim |
+| `IMC-Canonical-20260307T225939Z` | current operator truth | current shipped March 7 run-of-record identity | historical-only context |
+| `A4-BENCH-20260307T230025Z` | current operator truth | current shipped benchmark identity | generic marketing claim |
 | `backend=rust`, `compiled_extension=1`, `fallback_used=0` | current operator truth | runtime-path verification | optional preference |
-| `169/169` tests PASS | current operator truth | accepted run verdict | compatibility contract |
-| `canonical_total_words_per_sec=276798.7185` | current operator truth | accepted throughput ceiling in `imc_stream_words/sec` | natural-language words/sec or generic media-codec supremacy |
+| `170 passed` in a full operator tree | current operator truth | accepted full-lane verdict when the private A6 Triton export is present | compatibility contract |
+| `169 passed, 1 skipped` in the public snapshot | current public audit truth | honest public rerun verdict when the operator-only A6 Triton check is intentionally skipped | full private/operator lane |
+| `canonical_total_words_per_sec=286165.1102` | current operator truth | current shipped throughput ceiling in `imc_stream_words/sec` | natural-language words/sec or generic media-codec supremacy |
 
 If you only remember one rule: `844` is frozen compatibility truth and historical demo context; the March 7 run/log pair is current operator truth.
 
@@ -98,14 +121,26 @@ Manual API keys are also not required for the public audit path:
 
 ## Expected Current Truth
 
-Current operator truth is the later March 7 accepted run:
-- `run_name=IMC-Canonical-20260307T131330Z`
-- `benchmark_run_id=A4-BENCH-20260307T131414Z`
+Current operator truth is the current shipped March 7 run:
+- `run_name=IMC-Canonical-20260307T225939Z`
+- `benchmark_run_id=A4-BENCH-20260307T230025Z`
+- `tests_passed=170`
+- `tests_skipped=0`
+- `tests_total=170`
+- `canonical_total_words_per_sec=286165.1102`
+- `throughput_encode_words_per_sec=64846.8071`
+- `throughput_decode_words_per_sec=199119.0278`
+
+Latest public live workbook twin remains the older March 7 Comet run
+listed in `README.md` under `Public ML Workbooks`. Treat it as public
+observability lineage, not as the exact shipped operator packet.
+
+Current public audit truth in the public snapshot is the local rerun bundle:
 - `tests_passed=169`
-- `tests_total=169`
-- `canonical_total_words_per_sec=276798.7185`
-- `throughput_encode_words_per_sec=94104.7837`
-- `throughput_decode_words_per_sec=296145.6735`
+- `tests_skipped=1`
+- `tests_total=170`
+- the intentional skip is `code/tests/test_triton_repo_layout_operator.py::test_triton_tokenizer_model_matches_private_a6_export_artifact`
+- the skipped operator-only test depends on `proofs/artifacts/2026-02-24_program_maximal/A6/exported/zpe_tokenizer_op.onnx`, which is intentionally excluded from the public snapshot
 
 All throughput numbers are `imc_stream_words/sec`, not natural-language words/sec.
 
@@ -117,6 +152,7 @@ Treat it as a replay mismatch, not as a free-form argument. Capture:
 - exact command run
 - stdout/stderr
 - the relevant diff against:
+  - your local rerun bundle under `proofs/reruns/IMC-Canonical-<UTC timestamp>/`
   - `proofs/logs/phase6_run_of_record_manifest.json`
   - `proofs/logs/phase6_comet_run.txt`
 

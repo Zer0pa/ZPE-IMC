@@ -11,7 +11,7 @@ It defines where transport-contract truth lives and how a fresh operator builds,
 verifies, and reruns the current Rust-backed path.
 
 Canonical anchors:
-- Public audit acquisition surface: `https://github.com/Zer0pa/ZPE-IMC.git`
+- External auditor acquisition surface: `https://github.com/Zer0pa/ZPE-IMC.git`
 - Contact: `architects@zer0pa.ai`
 - Contract version: `wave1.0`
 - Frozen contract anchor: `total_words=844` for downstream compatibility and historical demo custody only
@@ -30,7 +30,7 @@ Three dimensions of current authority:
 
 Authority classes:
 - Source-repo truth: this repo, its current docs, and `proofs/logs/phase6_run_of_record_manifest.json` plus `proofs/logs/phase6_comet_run.txt`
-- Uploaded snapshot defects: the current public audit snapshot at `https://github.com/Zer0pa/ZPE-IMC.git` can omit files or carry path defects and does not outrank the source repo
+- Uploaded snapshot defects: the public repo at `https://github.com/Zer0pa/ZPE-IMC.git` can lag the live working tree or omit non-public surfaces and does not outrank the source repo
 - Historical/archive material: chronology and evidence surfaces that inform authority but do not define the live operator path
 
 <p>

@@ -42,8 +42,12 @@ def test_triton_tokenizer_model_matches_public_integrity_manifest() -> None:
     assert TRITON_TOKENIZER_INTEGRITY.exists()
 
     manifest = json.loads(TRITON_TOKENIZER_INTEGRITY.read_text(encoding="utf-8"))
+    artifact = str(manifest["artifact"]).replace("\\", "/")
 
-    assert manifest["artifact"] == "zpe_tokenizer_onnx/1/model.onnx"
+    assert artifact == "zpe_tokenizer_onnx/1/model.onnx"
+    assert "proofs/artifacts/" not in artifact
+    assert not Path(artifact).is_absolute()
+    assert (TRITON_REPO / artifact) == TRITON_TOKENIZER_MODEL
     assert int(manifest["size_bytes"]) == TRITON_TOKENIZER_MODEL.stat().st_size
     assert manifest["sha256"] == _sha256(TRITON_TOKENIZER_MODEL)
 

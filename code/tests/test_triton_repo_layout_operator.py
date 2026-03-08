@@ -18,13 +18,18 @@ A6_TOKENIZER_EXPORT = (
     / "exported"
     / "zpe_tokenizer_op.onnx"
 )
+SKIP_REASON = "A6 export artifact is excluded from the public snapshot; operator/private byte-identity check skipped"
+
+
+def _private_a6_export_available() -> bool:
+    return A6_TOKENIZER_EXPORT.is_file()
 
 
 @pytest.mark.skipif(
-    not A6_TOKENIZER_EXPORT.exists(),
-    reason="A6 export artifact is excluded from the public snapshot; operator/private byte-identity check skipped",
+    not _private_a6_export_available(),
+    reason=SKIP_REASON,
 )
 def test_triton_tokenizer_model_matches_private_a6_export_artifact() -> None:
-    assert TRITON_TOKENIZER_MODEL.exists()
-    assert A6_TOKENIZER_EXPORT.exists()
+    assert TRITON_TOKENIZER_MODEL.is_file()
+    assert _private_a6_export_available()
     assert TRITON_TOKENIZER_MODEL.read_bytes() == A6_TOKENIZER_EXPORT.read_bytes()

@@ -122,9 +122,9 @@ may omit files or carry path defects, and historical/archive material
 may carry valuable lineage, but neither outranks the source repo’s
 current authority artifacts.
 
-Current public audit acquisition surface:
-`https://github.com/Zer0pa/ZPE-IMC.git`. Use that provisioned clone
-target rather than the earlier dead clone guidance.
+Current external auditor acquisition surface:
+`https://github.com/Zer0pa/ZPE-IMC.git`. Use that public clone target
+for current verification.
 
 ---
 
@@ -150,7 +150,7 @@ cases with 0 uncaught crashes. Individual lane campaigns ran
 additional suites (mental: 128 cases, touch: 12 cases, smell: 8
 adversarial cases, etc.). This matters because a transport substrate
 that only works on clean inputs is not a transport substrate — it is
-a demo. The historical dirty-data results live in the source-truth proof warehouse and are not part of this reduced public audit packet.
+a demo. The dirty-data results are in `proofs/artifacts/`.
 
 ---
 
@@ -196,11 +196,11 @@ Expected current runtime facts:
 - `compiled_extension=True`
 - `fallback_used=False`
 
-Current runtime authority is the later March 7 accepted run recorded in
+Current runtime authority is the current shipped March 7 operator run recorded in
 `proofs/logs/phase6_run_of_record_manifest.json` and
 `proofs/logs/phase6_comet_run.txt`. The accepted run is
-`IMC-Canonical-20260307T131330Z` with `169/169` tests passing and
-`benchmark_run_id=A4-BENCH-20260307T131414Z`.
+`IMC-Canonical-20260307T225939Z` with `170/170` tests passing and
+`benchmark_run_id=A4-BENCH-20260307T230025Z`.
 
 ---
 
@@ -300,19 +300,17 @@ Protected Architecture and should read `LICENSE` accordingly.
 **How do I verify a specific claim?**
 
 Every non-trivial claim in the technical documentation has an evidence
-path pointing to a repo-relative artifact. For this reduced public audit
-packet, start with:
+path pointing to a repo-relative artifact. The entry point for
+IMC Wave-1 is:
 
 ```text
-proofs/logs/phase6_run_of_record_manifest.json
-proofs/logs/phase6_comet_run.txt
+proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md
 ```
 
-Then use `docs/PUBLIC_AUDIT_SNAPSHOT_STAMP.md`,
-`PUBLIC_AUDIT_LIMITS.md`, and
-`proofs/release_validation/security/secret_scan_report_20260225T104355Z.md`
-as the public integrity anchors. Historical warehouse reports remain
-source-truth lineage outside this reduced public packet.
+For the full evidence index, consult the consolidated proof report:
+`proofs/CONSOLIDATED_PROOF_REPORT.md`. Artifact SHA256
+hashes in the listed records are the integrity anchors — compute
+locally and compare.
 
 ---
 

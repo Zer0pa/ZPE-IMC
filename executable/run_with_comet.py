@@ -16,25 +16,32 @@ import subprocess
 import sys
 import time
 from typing import Any
+import warnings
 
-from determinism_probe import PROBE_ID, run_probe
+try:
+    from .determinism_probe import PROBE_ID, run_probe
+except ImportError:
+    from determinism_probe import PROBE_ID, run_probe
 
 SCRIPT_PATH = Path(__file__).resolve()
 V0_ROOT = SCRIPT_PATH.parents[1]
 CODE_ROOT = V0_ROOT / "code"
-LOG_ROOT = V0_ROOT / "proofs" / "logs"
-BENCHMARK_ARTIFACT_ROOT = CODE_ROOT / "benchmarks" / "artifacts"
-BENCHMARK_METRICS_DIR = BENCHMARK_ARTIFACT_ROOT / "metrics"
-BENCHMARK_TELEMETRY = BENCHMARK_ARTIFACT_ROOT / "telemetry" / "progressive_events.jsonl"
-BENCHMARK_REPORT_PATH = BENCHMARK_ARTIFACT_ROOT / "BENCHMARK_REPORT.md"
-HOTSPOT_PROFILE_PATH = BENCHMARK_ARTIFACT_ROOT / "HOTSPOT_PROFILE.md"
-PROOF_MANIFEST_PATH = LOG_ROOT / "phase6_run_of_record_manifest.json"
+REFERENCE_LOG_ROOT = V0_ROOT / "proofs" / "logs"
+REFERENCE_BENCHMARK_ARTIFACT_ROOT = CODE_ROOT / "benchmarks" / "artifacts"
+PUBLIC_RERUN_ROOT = V0_ROOT / "proofs" / "reruns"
+PRIVATE_A6_TRITON_EXPORT = (
+    V0_ROOT / "proofs" / "artifacts" / "2026-02-24_program_maximal" / "A6" / "exported" / "zpe_tokenizer_op.onnx"
+)
 
 DEFAULT_WORKSPACE = "zer0pa"
 DEFAULT_CLASSIC_PROJECT = "ZPE-IMC-Performance"
 DEFAULT_OPIK_PROJECT = "ZPE-IMC-Canonical"
 DEFAULT_OPIK_URL = "https://www.comet.com/opik/api"
 DEFAULT_THREAD_ID = "imc-closure-wave1"
+REQUESTS_WARNING_MESSAGE_PATTERN = (
+    r"urllib3 \([^)]+\) or chardet \([^)]+\)/charset_normalizer \([^)]+\) doesn't match a supported version!"
+)
+REQUESTS_WARNING_ENV_FILTER = r"ignore:urllib3 \([^)]+\) or chardet \([^)]+\)/charset_normalizer \([^)]+\) doesn't match a supported version!:Warning"
 
 BENCHMARK_SCALAR_KEYS = (
     "latency_ms_p50",
@@ -64,6 +71,13 @@ CANONICAL_PARALLEL_MIN_TOTAL_WORDS = 1_350_000
 CANONICAL_PARALLEL_MAX_BATCH_ITERATIONS = 512
 CANONICAL_PREPASS_MEASUREMENT_MODE = "single_stream_single_process"
 CANONICAL_STEADY_STATE_MEASUREMENT_MODE = "steady_state_parallel_batch"
+
+
+warnings.filterwarnings(
+    "ignore",
+    message=REQUESTS_WARNING_MESSAGE_PATTERN,
+    module=r"requests(\..*)?",
+)
 
 if str(CODE_ROOT) not in sys.path:
     sys.path.insert(0, str(CODE_ROOT))
@@ -117,6 +131,19 @@ class CuratedMetricSurface:
     benchmark_series: dict[str, list[tuple[int, float]]]
     parameter_values: dict[str, Any]
     metric_names: list[str]
+
+
+@dataclass(frozen=True)
+class RunArtifactPaths:
+    bundle_root: Path
+    env_check_path: Path
+    run_log_path: Path
+    proof_manifest_path: Path
+    benchmark_artifact_root: Path
+    benchmark_metrics_dir: Path
+    benchmark_telemetry_path: Path
+    benchmark_report_path: Path
+    hotspot_profile_path: Path
 
 
 class ClassicCometAdapter:
@@ -429,6 +456,8 @@ def _runtime_env() -> dict[str, str]:
     env["STROKEGRAM_ENABLE_DIAGRAM"] = "1"
     env["STROKEGRAM_ENABLE_MUSIC"] = "1"
     env["STROKEGRAM_ENABLE_VOICE"] = "1"
+    warning_filters = [value for value in (env.get("PYTHONWARNINGS", "").strip(), REQUESTS_WARNING_ENV_FILTER) if value]
+    env["PYTHONWARNINGS"] = ",".join(warning_filters)
     return env
 
 
@@ -464,8 +493,18 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Run promoted IMC validation with local proof artifacts by default; opt in to live logging explicitly."
     )
-    parser.add_argument("--env-check-out", type=Path, default=LOG_ROOT / "phase6_comet_env_check.txt")
-    parser.add_argument("--log-out", type=Path, default=LOG_ROOT / "phase6_comet_run.txt")
+    parser.add_argument(
+        "--env-check-out",
+        type=Path,
+        default=None,
+        help="Optional override for the environment check log. Defaults to proofs/reruns/<run_name>/phase6_comet_env_check.txt.",
+    )
+    parser.add_argument(
+        "--log-out",
+        type=Path,
+        default=None,
+        help="Optional override for the run log. Defaults to proofs/reruns/<run_name>/phase6_comet_run.txt.",
+    )
     parser.add_argument(
         "--enable-classic-comet",
         action="store_true",
@@ -495,6 +534,27 @@ def _parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
+def _resolve_run_artifact_paths(
+    *,
+    run_name: str,
+    env_check_out: Path | None,
+    log_out: Path | None,
+) -> RunArtifactPaths:
+    bundle_root = PUBLIC_RERUN_ROOT / run_name
+    benchmark_artifact_root = bundle_root / "benchmarks"
+    return RunArtifactPaths(
+        bundle_root=bundle_root,
+        env_check_path=env_check_out or bundle_root / "phase6_comet_env_check.txt",
+        run_log_path=log_out or bundle_root / "phase6_comet_run.txt",
+        proof_manifest_path=bundle_root / "phase6_run_of_record_manifest.json",
+        benchmark_artifact_root=benchmark_artifact_root,
+        benchmark_metrics_dir=benchmark_artifact_root / "metrics",
+        benchmark_telemetry_path=benchmark_artifact_root / "telemetry" / "progressive_events.jsonl",
+        benchmark_report_path=benchmark_artifact_root / "BENCHMARK_REPORT.md",
+        hotspot_profile_path=benchmark_artifact_root / "HOTSPOT_PROFILE.md",
+    )
+
+
 def _trim_output(text: str, lines: int = 40) -> str:
     return "\n".join(text.splitlines()[:lines])
 
@@ -506,11 +566,12 @@ def _run_command(*, label: str, cmd: list[str], cwd: Path, env: dict[str, str]) 
 
 
 def _parse_pytest_counts(text: str) -> dict[str, int]:
-    counts = {"tests_total": 0, "tests_passed": 0, "tests_failed": 0}
+    counts = {"tests_total": 0, "tests_passed": 0, "tests_failed": 0, "tests_skipped": 0}
     patterns = {
         "tests_passed": re.compile(r"(?<!\w)(\d+)\s+passed\b"),
         "failed": re.compile(r"(?<!\w)(\d+)\s+failed\b"),
         "errors": re.compile(r"(?<!\w)(\d+)\s+errors?\b"),
+        "tests_skipped": re.compile(r"(?<!\w)(\d+)\s+skipped\b"),
     }
     for line in text.splitlines():
         passed_match = patterns["tests_passed"].search(line)
@@ -522,7 +583,10 @@ def _parse_pytest_counts(text: str) -> dict[str, int]:
         error_match = patterns["errors"].search(line)
         if error_match is not None:
             counts["tests_failed"] += int(error_match.group(1))
-    counts["tests_total"] = counts["tests_passed"] + counts["tests_failed"]
+        skipped_match = patterns["tests_skipped"].search(line)
+        if skipped_match is not None:
+            counts["tests_skipped"] = max(counts["tests_skipped"], int(skipped_match.group(1)))
+    counts["tests_total"] = counts["tests_passed"] + counts["tests_failed"] + counts["tests_skipped"]
     return counts
 
 
@@ -845,12 +909,12 @@ def _determinism_hash_match() -> tuple[int, str, str, str]:
     return (1 if payload.get("stable") else 0), hash_a, hash_b, probe_id
 
 
-def _collect_benchmark_summary(output_dir: Path) -> dict[str, Any]:
-    artifact_paths = {
-        "benchmark_report_path": str(BENCHMARK_REPORT_PATH),
-        "hotspot_profile_path": str(HOTSPOT_PROFILE_PATH),
+def _collect_benchmark_summary(output_dir: Path, *, artifact_paths: RunArtifactPaths) -> dict[str, Any]:
+    artifact_summary_paths = {
+        "benchmark_report_path": str(artifact_paths.benchmark_report_path),
+        "hotspot_profile_path": str(artifact_paths.hotspot_profile_path),
         "benchmark_metrics_dir": str(output_dir),
-        "telemetry_log_path": str(BENCHMARK_TELEMETRY),
+        "telemetry_log_path": str(artifact_paths.benchmark_telemetry_path),
     }
     if not output_dir.exists():
         return {
@@ -863,7 +927,7 @@ def _collect_benchmark_summary(output_dir: Path) -> dict[str, Any]:
             "scenario_metrics": {},
             "metric_names": [],
             "metric_file_paths": [],
-            "artifact_paths": artifact_paths,
+            "artifact_paths": artifact_summary_paths,
         }
     metrics: list[dict[str, Any]] = []
     scenario_rows: list[dict[str, Any]] = []
@@ -916,7 +980,7 @@ def _collect_benchmark_summary(output_dir: Path) -> dict[str, Any]:
         "scenario_metrics": scenario_metrics,
         "metric_names": sorted(metric_names),
         "metric_file_paths": metric_file_paths,
-        "artifact_paths": artifact_paths,
+        "artifact_paths": artifact_summary_paths,
     }
 
 
@@ -1467,8 +1531,16 @@ def _curated_benchmark_series(telemetry_path: Path) -> dict[str, list[tuple[int,
     return series
 
 
-def _load_curated_history(workspace: str, project_name: str, current_row: Mapping[str, float]) -> list[dict[str, float]]:
+def _load_curated_history(
+    workspace: str,
+    project_name: str,
+    current_row: Mapping[str, float],
+    *,
+    classic_remote_requested: bool,
+) -> list[dict[str, float]]:
     history_rows: list[dict[str, float]] = []
+    if not classic_remote_requested:
+        return [dict(current_row)]
     try:
         from comet_ml.api import API  # type: ignore
     except Exception:
@@ -1515,9 +1587,15 @@ def _build_curated_surface(
     pytest_counts: dict[str, int],
     canonical_result: CanonicalRunResult,
     benchmark_telemetry_path: Path,
+    classic_remote_requested: bool,
 ) -> CuratedMetricSurface:
     current_row, inrun_rows = _canonical_feature_row(pytest_counts=pytest_counts, canonical_result=canonical_result)
-    history_rows = _load_curated_history(workspace, project_name, current_row)
+    history_rows = _load_curated_history(
+        workspace,
+        project_name,
+        current_row,
+        classic_remote_requested=classic_remote_requested,
+    )
     final_metrics = _curated_final_metrics(current_row)
     inrun_series = _curated_inrun_series(inrun_rows)
     cross_run_series = _curated_cross_run_series(history_rows)
@@ -1672,18 +1750,33 @@ def _verify_opik_project(*, workspace: str, expected_name: str, host: str) -> Pr
 def _write_env_check(
     path: Path,
     *,
+    run_name: str,
+    artifact_paths: RunArtifactPaths,
+    authority_lane: str,
     workspace: str,
     classic_check: ProjectCheck,
     opik_check: ProjectCheck,
     classic_remote_enabled: bool,
     opik_remote_enabled: bool,
+    classic_remote_requested: bool,
+    opik_remote_requested: bool,
 ) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     lines = [
         "IMC DUAL LOGGING ENV CHECK",
+        f"RUN_NAME={run_name}",
         f"WORKSPACE={workspace}",
+        f"AUTHORITY_LANE={authority_lane}",
+        f"RERUN_BUNDLE_ROOT={artifact_paths.bundle_root}",
+        f"RERUN_PROOF_MANIFEST={artifact_paths.proof_manifest_path}",
+        f"RERUN_RUN_LOG={artifact_paths.run_log_path}",
+        f"RERUN_BENCHMARK_REPORT={artifact_paths.benchmark_report_path}",
+        f"REFERENCE_OPERATOR_MANIFEST={REFERENCE_LOG_ROOT / 'phase6_run_of_record_manifest.json'}",
+        f"REFERENCE_OPERATOR_RUN_LOG={REFERENCE_LOG_ROOT / 'phase6_comet_run.txt'}",
+        f"REFERENCE_OPERATOR_BENCHMARK_REPORT={REFERENCE_BENCHMARK_ARTIFACT_ROOT / 'BENCHMARK_REPORT.md'}",
         "RELEASE_DEFAULT_LOCAL_ONLY=1",
         f"CLASSIC_REMOTE_ENABLED={1 if classic_remote_enabled else 0}",
+        f"CLASSIC_REMOTE_REQUESTED={1 if classic_remote_requested else 0}",
         f"COMET_API_KEY_PRESENT={1 if os.environ.get('COMET_API_KEY') else 0}",
         f"COMET_WORKSPACE={os.environ.get('COMET_WORKSPACE', '') or '(unset)'}",
         f"COMET_PROJECT_EXPECTED={DEFAULT_CLASSIC_PROJECT}",
@@ -1693,6 +1786,7 @@ def _write_env_check(
         f"COMET_PROJECT_RESOLVED_SLUG={classic_check.resolved_slug or '(unset)'}",
         f"COMET_HANDSHAKE_ERROR={classic_check.handshake_error or '(none)'}",
         f"OPIK_REMOTE_ENABLED={1 if opik_remote_enabled else 0}",
+        f"OPIK_REMOTE_REQUESTED={1 if opik_remote_requested else 0}",
         f"OPIK_API_KEY_PRESENT={1 if os.environ.get('OPIK_API_KEY') else 0}",
         f"OPIK_EFFECTIVE_API_KEY_PRESENT={1 if _opik_api_key() else 0}",
         f"OPIK_API_KEY_SOURCE={_opik_api_key_source()}",
@@ -1743,6 +1837,10 @@ def _build_proof_manifest(
     env_check_path: Path,
     run_log_path: Path,
     proof_reference_mode: str,
+    artifact_paths: RunArtifactPaths,
+    authority_lane: str,
+    authority_lane_reason: str,
+    operator_private_a6_artifact_present: bool,
 ) -> dict[str, Any]:
     return {
         "generated_at_utc": _utc_now(),
@@ -1750,6 +1848,8 @@ def _build_proof_manifest(
         "run_kind": "canonical-promotion",
         "run_name": run_name,
         "workspace": workspace,
+        "authority_lane": authority_lane,
+        "authority_lane_reason": authority_lane_reason,
         "run_of_record": {
             "type": "saturated_canonical",
             "canonical_measurement_mode": str(
@@ -1830,6 +1930,8 @@ def _build_proof_manifest(
                 "tests_total": pytest_counts["tests_total"],
                 "tests_passed": pytest_counts["tests_passed"],
                 "tests_failed": pytest_counts["tests_failed"],
+                "tests_skipped": pytest_counts["tests_skipped"],
+                "operator_private_a6_artifact_present": int(operator_private_a6_artifact_present),
             },
             "dirty_data": {
                 "sensation_regression_return_code": sensation_result.returncode,
@@ -1860,13 +1962,16 @@ def _build_proof_manifest(
         "paths": {
             "env_check_log": str(env_check_path),
             "run_log": str(run_log_path),
-            "proof_manifest": str(PROOF_MANIFEST_PATH),
-            "benchmark_report": str(BENCHMARK_REPORT_PATH),
-            "hotspot_profile": str(HOTSPOT_PROFILE_PATH),
-            "benchmark_metrics_dir": str(BENCHMARK_METRICS_DIR),
-            "telemetry_log": str(BENCHMARK_TELEMETRY),
+            "proof_manifest": str(artifact_paths.proof_manifest_path),
+            "benchmark_report": str(artifact_paths.benchmark_report_path),
+            "hotspot_profile": str(artifact_paths.hotspot_profile_path),
+            "benchmark_metrics_dir": str(artifact_paths.benchmark_metrics_dir),
+            "telemetry_log": str(artifact_paths.benchmark_telemetry_path),
             "rust_crate_path": canonical_result.summary["rust_crate_path"],
             "kernel_backend_module_file": canonical_result.summary["kernel_backend_module_file"],
+            "reference_operator_manifest": str(REFERENCE_LOG_ROOT / "phase6_run_of_record_manifest.json"),
+            "reference_operator_run_log": str(REFERENCE_LOG_ROOT / "phase6_comet_run.txt"),
+            "reference_operator_benchmark_report": str(REFERENCE_BENCHMARK_ARTIFACT_ROOT / "BENCHMARK_REPORT.md"),
         },
         "metric_names_landed": metric_names,
     }
@@ -1874,8 +1979,21 @@ def _build_proof_manifest(
 
 def main() -> int:
     args = _parse_args()
+    run_name = f"IMC-Canonical-{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}"
+    artifact_paths = _resolve_run_artifact_paths(
+        run_name=run_name,
+        env_check_out=args.env_check_out,
+        log_out=args.log_out,
+    )
     workspace = os.environ.get("COMET_WORKSPACE") or os.environ.get("OPIK_WORKSPACE") or DEFAULT_WORKSPACE
     opik_host = os.environ.get("OPIK_URL_OVERRIDE", DEFAULT_OPIK_URL)
+    operator_private_a6_artifact_present = PRIVATE_A6_TRITON_EXPORT.exists()
+    authority_lane = "operator_authority" if operator_private_a6_artifact_present else "public_audit"
+    authority_lane_reason = (
+        "private/operator A6 Triton export is present; the full operator byte-identity check is active"
+        if operator_private_a6_artifact_present
+        else "public snapshot excludes the private/operator A6 Triton export; one operator-only Triton check is expected to skip"
+    )
     classic_remote_enabled = _remote_logging_enabled(
         enable=bool(args.enable_classic_comet),
         disable=bool(args.disable_classic_comet),
@@ -1884,37 +2002,52 @@ def main() -> int:
         enable=bool(args.enable_opik),
         disable=bool(args.disable_opik),
     )
+    classic_remote_requested = classic_remote_enabled and bool((os.environ.get("COMET_API_KEY") or "").strip())
+    opik_remote_requested = opik_remote_enabled and bool(_opik_api_key())
 
     classic_check = (
         _verify_classic_comet_project(workspace=workspace, expected_name=DEFAULT_CLASSIC_PROJECT)
-        if classic_remote_enabled
-        else _disabled_project_check("classic", "disabled by release-default local-only mode")
+        if classic_remote_requested
+        else _disabled_project_check(
+            "classic",
+            "enabled by flag but COMET_API_KEY missing; local-only mode retained"
+            if classic_remote_enabled
+            else "disabled by release-default local-only mode",
+        )
     )
     opik_check = (
         _verify_opik_project(workspace=workspace, expected_name=DEFAULT_OPIK_PROJECT, host=opik_host)
-        if opik_remote_enabled
-        else _disabled_project_check("opik", "disabled by release-default local-only mode")
+        if opik_remote_requested
+        else _disabled_project_check(
+            "opik",
+            "enabled by flag but OPIK_API_KEY/COMET_API_KEY missing; local-only mode retained"
+            if opik_remote_enabled
+            else "disabled by release-default local-only mode",
+        )
     )
     _write_env_check(
-        args.env_check_out,
+        artifact_paths.env_check_path,
+        run_name=run_name,
+        artifact_paths=artifact_paths,
+        authority_lane=authority_lane,
         workspace=workspace,
         classic_check=classic_check,
         opik_check=opik_check,
         classic_remote_enabled=classic_remote_enabled,
         opik_remote_enabled=opik_remote_enabled,
+        classic_remote_requested=classic_remote_requested,
+        opik_remote_requested=opik_remote_requested,
     )
-
-    run_name = f"IMC-Canonical-{time.strftime('%Y%m%dT%H%M%SZ', time.gmtime())}"
     comet_adapter = ClassicCometAdapter.create(
         project_check=classic_check,
         workspace=workspace,
         run_name=run_name,
-        disabled=not classic_remote_enabled,
+        disabled=not classic_remote_requested,
     )
     opik_adapter = OpikAdapter.create(
         project_check=opik_check,
         workspace=workspace,
-        disabled=not opik_remote_enabled,
+        disabled=not opik_remote_requested,
     )
 
     trace = opik_adapter.start_trace(
@@ -1922,6 +2055,7 @@ def main() -> int:
         metadata={
             "run_kind": "canonical-promotion",
             "workspace": workspace,
+            "authority_lane": authority_lane,
             "classic_project_status": classic_check.status,
             "opik_project_status": opik_check.status,
         },
@@ -1929,10 +2063,11 @@ def main() -> int:
     )
 
     subprocess_env = _subprocess_env()
+    pytest_targets = [name for name in ("tests", "tests_phase3") if (CODE_ROOT / name).exists()]
     pytest_span = trace.span(name="pytest_suite", metadata={"phase": "validation"}) if trace is not None else None
     pytest_result = _run_command(
         label="pytest",
-        cmd=[sys.executable, "-m", "pytest", "tests", "tests_phase3", "-q"],
+        cmd=[sys.executable, "-m", "pytest", *pytest_targets, "-q"],
         cwd=CODE_ROOT,
         env=subprocess_env,
     )
@@ -1977,16 +2112,19 @@ def main() -> int:
             "--profile",
             str(args.benchmark_profile),
             "--artifact-root",
-            str(BENCHMARK_ARTIFACT_ROOT),
+            str(artifact_paths.benchmark_artifact_root),
             "--output-dir",
-            str(BENCHMARK_METRICS_DIR),
+            str(artifact_paths.benchmark_metrics_dir),
             "--telemetry-out",
-            str(BENCHMARK_TELEMETRY),
+            str(artifact_paths.benchmark_telemetry_path),
         ],
         cwd=CODE_ROOT,
         env=subprocess_env,
     )
-    benchmark_summary = _collect_benchmark_summary(BENCHMARK_METRICS_DIR)
+    benchmark_summary = _collect_benchmark_summary(
+        artifact_paths.benchmark_metrics_dir,
+        artifact_paths=artifact_paths,
+    )
     if benchmark_span is not None:
         benchmark_span.end(output={**benchmark_summary, "returncode": benchmark_result.returncode})
 
@@ -2018,10 +2156,10 @@ def main() -> int:
         else None
     )
     proof_attachment_paths = [
-        args.env_check_out,
-        BENCHMARK_REPORT_PATH,
-        HOTSPOT_PROFILE_PATH,
-        BENCHMARK_TELEMETRY,
+        artifact_paths.env_check_path,
+        artifact_paths.benchmark_report_path,
+        artifact_paths.hotspot_profile_path,
+        artifact_paths.benchmark_telemetry_path,
         *(Path(path) for path in benchmark_summary.get("metric_file_paths", [])),
     ]
     attachment_result = (
@@ -2039,21 +2177,11 @@ def main() -> int:
         )
     )
     comet_identity = comet_adapter.identity()
-    classic_remote_requested = classic_remote_enabled and bool((os.environ.get("COMET_API_KEY") or "").strip())
-    opik_remote_requested = opik_remote_enabled and bool(_opik_api_key())
     classic_logging_ok = (
-        1
-        if not classic_remote_enabled
-        else 1
-        if not classic_remote_requested
-        else 1 if comet_adapter.enabled and classic_check.status in {"EXISTS", "CREATED"} else 0
+        1 if not classic_remote_requested else 1 if comet_adapter.enabled and classic_check.status in {"EXISTS", "CREATED"} else 0
     )
     opik_logging_ok = (
-        1
-        if not opik_remote_enabled
-        else 1
-        if not opik_remote_requested
-        else 1 if trace is not None and opik_adapter.enabled and opik_check.status in {"EXISTS", "CREATED"} else 0
+        1 if not opik_remote_requested else 1 if trace is not None and opik_adapter.enabled and opik_check.status in {"EXISTS", "CREATED"} else 0
     )
     opik_reference_bundle_logged = 1 if (trace is not None or not opik_remote_enabled or not opik_remote_requested) else 0
     base_proof_bundle_complete = _proof_bundle_complete(proof_attachment_paths)
@@ -2061,6 +2189,7 @@ def main() -> int:
         "tests_total": pytest_counts["tests_total"],
         "tests_passed": pytest_counts["tests_passed"],
         "tests_failed": pytest_counts["tests_failed"],
+        "tests_skipped": pytest_counts["tests_skipped"],
         "sensation_regression_ok": 1 if sensation_result.returncode == 0 else 0,
         "integrated_fidelity_ok": 1 if fidelity_result.returncode == 0 else 0,
         "cross_modal_roundtrip_ok": 1 if cross_modal_result.returncode == 0 else 0,
@@ -2113,12 +2242,15 @@ def main() -> int:
         "opik_native_attachment_uploaded_count": attachment_result.uploaded_count,
         "opik_native_attachment_verified_count": attachment_result.verified_count,
         "opik_native_attachment_verified": 1 if attachment_result.status == "verified" else 0,
-        "benchmark_report_present": 1 if BENCHMARK_REPORT_PATH.exists() else 0,
-        "hotspot_profile_present": 1 if HOTSPOT_PROFILE_PATH.exists() else 0,
-        "telemetry_log_present": 1 if BENCHMARK_TELEMETRY.exists() else 0,
+        "benchmark_report_present": 1 if artifact_paths.benchmark_report_path.exists() else 0,
+        "hotspot_profile_present": 1 if artifact_paths.hotspot_profile_path.exists() else 0,
+        "telemetry_log_present": 1 if artifact_paths.benchmark_telemetry_path.exists() else 0,
         "proof_manifest_present": 0,
         "proof_bundle_complete": 0,
         "proof_visibility_ok": 1 if base_proof_bundle_complete and opik_reference_bundle_logged else 0,
+        "operator_private_a6_artifact_present": 1 if operator_private_a6_artifact_present else 0,
+        "public_audit_lane": 0 if operator_private_a6_artifact_present else 1,
+        "operator_authority_lane": 1 if operator_private_a6_artifact_present else 0,
     }
     metrics.update(benchmark_summary["scenario_metrics"])
     for key, value in canonical_result.summary["modality_counts"].items():
@@ -2132,7 +2264,8 @@ def main() -> int:
         project_name=history_project_name,
         pytest_counts=pytest_counts,
         canonical_result=canonical_result,
-        benchmark_telemetry_path=BENCHMARK_TELEMETRY,
+        benchmark_telemetry_path=artifact_paths.benchmark_telemetry_path,
+        classic_remote_requested=classic_remote_requested,
     )
     metrics.update(curated_surface.final_metrics)
 
@@ -2180,14 +2313,18 @@ def main() -> int:
         hash_b=hash_b,
         probe_id=probe_id,
         metric_names=provisional_metric_names,
-        env_check_path=args.env_check_out,
-        run_log_path=args.log_out,
+        env_check_path=artifact_paths.env_check_path,
+        run_log_path=artifact_paths.run_log_path,
         proof_reference_mode=proof_reference_mode,
+        artifact_paths=artifact_paths,
+        authority_lane=authority_lane,
+        authority_lane_reason=authority_lane_reason,
+        operator_private_a6_artifact_present=operator_private_a6_artifact_present,
     )
-    _write_json(PROOF_MANIFEST_PATH, provisional_manifest)
+    _write_json(artifact_paths.proof_manifest_path, provisional_manifest)
 
-    required_proof_paths = proof_attachment_paths + [PROOF_MANIFEST_PATH]
-    metrics["proof_manifest_present"] = 1 if PROOF_MANIFEST_PATH.exists() else 0
+    required_proof_paths = proof_attachment_paths + [artifact_paths.proof_manifest_path]
+    metrics["proof_manifest_present"] = 1 if artifact_paths.proof_manifest_path.exists() else 0
     metrics["proof_bundle_complete"] = _proof_bundle_complete(required_proof_paths)
     metrics["proof_visibility_ok"] = 1 if (
         metrics["proof_bundle_complete"] == 1
@@ -2225,6 +2362,8 @@ def main() -> int:
         ("classic_project_name", classic_check.resolved_name or ""),
         ("classic_project_id", classic_check.resolved_id or ""),
         ("classic_project_slug", classic_check.resolved_slug or ""),
+        ("authority_lane", authority_lane),
+        ("authority_lane_reason", authority_lane_reason),
         ("opik_project_status", opik_check.status),
         ("opik_project_name", opik_check.resolved_name or ""),
         ("opik_project_id", opik_check.resolved_id or ""),
@@ -2233,14 +2372,14 @@ def main() -> int:
         ("opik_trace_url", opik_trace_url),
         ("opik_attachment_status", attachment_result.status),
         ("proof_reference_mode", proof_reference_mode),
-        ("proof_manifest_path", str(PROOF_MANIFEST_PATH)),
-        ("phase6_env_check_path", str(args.env_check_out)),
-        ("phase6_run_log_path", str(args.log_out)),
+        ("proof_manifest_path", str(artifact_paths.proof_manifest_path)),
+        ("phase6_env_check_path", str(artifact_paths.env_check_path)),
+        ("phase6_run_log_path", str(artifact_paths.run_log_path)),
         ("benchmark_run_id", str(benchmark_summary.get("benchmark_run_id", ""))),
-        ("benchmark_report_path", str(BENCHMARK_REPORT_PATH)),
-        ("hotspot_profile_path", str(HOTSPOT_PROFILE_PATH)),
-        ("benchmark_metrics_dir", str(BENCHMARK_METRICS_DIR)),
-        ("benchmark_telemetry_log_path", str(BENCHMARK_TELEMETRY)),
+        ("benchmark_report_path", str(artifact_paths.benchmark_report_path)),
+        ("hotspot_profile_path", str(artifact_paths.hotspot_profile_path)),
+        ("benchmark_metrics_dir", str(artifact_paths.benchmark_metrics_dir)),
+        ("benchmark_telemetry_log_path", str(artifact_paths.benchmark_telemetry_path)),
         ("canonical_stream_hash", canonical_result.summary["stream_hash"]),
         ("voice_capability_mode", canonical_result.summary["voice_capability_mode"]),
         ("kernel_backend", canonical_result.summary["kernel_backend"]),
@@ -2252,7 +2391,9 @@ def main() -> int:
         ("rust_extension_module", canonical_result.summary["rust_extension_module"]),
         ("release_default_local_only", 1),
         ("classic_remote_enabled", 1 if classic_remote_enabled else 0),
+        ("classic_remote_requested", 1 if classic_remote_requested else 0),
         ("opik_remote_enabled", 1 if opik_remote_enabled else 0),
+        ("opik_remote_requested", 1 if opik_remote_requested else 0),
         ("canonical_measurement_mode", canonical_result.summary.get("measurement_mode", "")),
         ("canonical_measurement_scope", canonical_result.summary.get("measurement_scope", "")),
         (
@@ -2310,19 +2451,28 @@ def main() -> int:
         hash_b=hash_b,
         probe_id=probe_id,
         metric_names=metric_names,
-        env_check_path=args.env_check_out,
-        run_log_path=args.log_out,
+        env_check_path=artifact_paths.env_check_path,
+        run_log_path=artifact_paths.run_log_path,
         proof_reference_mode=proof_reference_mode,
+        artifact_paths=artifact_paths,
+        authority_lane=authority_lane,
+        authority_lane_reason=authority_lane_reason,
+        operator_private_a6_artifact_present=operator_private_a6_artifact_present,
     )
-    _write_json(PROOF_MANIFEST_PATH, final_manifest)
+    _write_json(artifact_paths.proof_manifest_path, final_manifest)
 
     run_lines = [
         "IMC DUAL LOGGING RUN",
         f"status={status}",
         "release_default_local_only=1",
         "run_of_record_type=saturated_canonical",
+        f"authority_lane={authority_lane}",
+        f"authority_lane_reason={authority_lane_reason}",
+        f"operator_private_a6_artifact_present={1 if operator_private_a6_artifact_present else 0}",
         f"classic_remote_enabled={1 if classic_remote_enabled else 0}",
+        f"classic_remote_requested={1 if classic_remote_requested else 0}",
         f"opik_remote_enabled={1 if opik_remote_enabled else 0}",
+        f"opik_remote_requested={1 if opik_remote_requested else 0}",
         f"canonical_measurement_mode={canonical_result.summary.get('measurement_mode', CANONICAL_STEADY_STATE_MEASUREMENT_MODE)}",
         f"canonical_measurement_scope={canonical_result.summary.get('measurement_scope', 'saturated_run_of_record')}",
         f"single_core_prepass_reported={int(canonical_result.summary.get('single_core_prepass_reported', 0))}",
@@ -2341,11 +2491,11 @@ def main() -> int:
         f"opik_trace_url={opik_trace_url or '(unset)'}",
         f"opik_handshake_error={opik_check.handshake_error or '(none)'}",
         f"proof_reference_mode={proof_reference_mode}",
-        f"proof_manifest_path={PROOF_MANIFEST_PATH}",
-        f"benchmark_report_path={BENCHMARK_REPORT_PATH}",
-        f"hotspot_profile_path={HOTSPOT_PROFILE_PATH}",
-        f"benchmark_metrics_dir={BENCHMARK_METRICS_DIR}",
-        f"telemetry_log_path={BENCHMARK_TELEMETRY}",
+        f"proof_manifest_path={artifact_paths.proof_manifest_path}",
+        f"benchmark_report_path={artifact_paths.benchmark_report_path}",
+        f"hotspot_profile_path={artifact_paths.hotspot_profile_path}",
+        f"benchmark_metrics_dir={artifact_paths.benchmark_metrics_dir}",
+        f"telemetry_log_path={artifact_paths.benchmark_telemetry_path}",
         f"kernel_backend={canonical_result.summary['kernel_backend']}",
         f"kernel_backend_origin={canonical_result.summary['kernel_backend_origin']}",
         f"kernel_backend_native={canonical_result.summary['kernel_backend_native']}",
@@ -2402,17 +2552,17 @@ def main() -> int:
         _trim_output(benchmark_result.output),
     ]
 
-    args.log_out.parent.mkdir(parents=True, exist_ok=True)
-    args.log_out.write_text("\n".join(run_lines) + "\n", encoding="utf-8")
+    artifact_paths.run_log_path.parent.mkdir(parents=True, exist_ok=True)
+    artifact_paths.run_log_path.write_text("\n".join(run_lines) + "\n", encoding="utf-8")
 
     if trace is not None and proof_span is not None:
         proof_span.end(
             output={
-                "proof_manifest_path": str(PROOF_MANIFEST_PATH),
-                "run_log_path": str(args.log_out),
-                "benchmark_report_path": str(BENCHMARK_REPORT_PATH),
-                "hotspot_profile_path": str(HOTSPOT_PROFILE_PATH),
-                "telemetry_log_path": str(BENCHMARK_TELEMETRY),
+                "proof_manifest_path": str(artifact_paths.proof_manifest_path),
+                "run_log_path": str(artifact_paths.run_log_path),
+                "benchmark_report_path": str(artifact_paths.benchmark_report_path),
+                "hotspot_profile_path": str(artifact_paths.hotspot_profile_path),
+                "telemetry_log_path": str(artifact_paths.benchmark_telemetry_path),
                 "metric_file_paths": benchmark_summary.get("metric_file_paths", []),
                 "opik_attachment_status": attachment_result.status,
                 "opik_attachment_requested_count": attachment_result.requested_count,
@@ -2432,12 +2582,13 @@ def main() -> int:
                     "all_deterministic": benchmark_summary.get("benchmark_all_deterministic", 0),
                 },
                 "proof_bundle": {
-                    "manifest_path": str(PROOF_MANIFEST_PATH),
-                    "run_log_path": str(args.log_out),
+                    "manifest_path": str(artifact_paths.proof_manifest_path),
+                    "run_log_path": str(artifact_paths.run_log_path),
                     "reference_mode": proof_reference_mode,
                     "attachment_status": attachment_result.status,
                     "attachment_verified_count": attachment_result.verified_count,
                 },
+                "authority_lane": authority_lane,
                 "kernel_backend": {
                     "backend": canonical_result.summary["kernel_backend"],
                     "origin": canonical_result.summary["kernel_backend_origin"],
@@ -2459,6 +2610,11 @@ def main() -> int:
             },
             output={
                 "pytest_return_code": pytest_result.returncode,
+                "authority_lane": authority_lane,
+                "tests_total": pytest_counts["tests_total"],
+                "tests_passed": pytest_counts["tests_passed"],
+                "tests_failed": pytest_counts["tests_failed"],
+                "tests_skipped": pytest_counts["tests_skipped"],
                 "sensation_regression_return_code": sensation_result.returncode,
                 "integrated_fidelity_return_code": fidelity_result.returncode,
                 "cross_modal_roundtrip_return_code": cross_modal_result.returncode,

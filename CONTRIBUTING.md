@@ -65,7 +65,7 @@ applies. Read it before contributing if you hold relevant patents.
 If you use a different Python version, include version details and
 command output in your PR evidence.
 
-Current public audit/contributor acquisition surface:
+Current provisioned external auditor/contributor acquisition surface:
 `https://github.com/Zer0pa/ZPE-IMC.git`
 
 ```bash
@@ -89,6 +89,10 @@ For the current operator-style proof rerun, use:
 python ./executable/run_with_comet.py
 ```
 
+Default output hygiene:
+- local reruns write a stamped bundle under `proofs/reruns/IMC-Canonical-<UTC timestamp>/`
+- shipped operator reference artifacts in `proofs/logs/` and `code/benchmarks/artifacts/` remain stable and are not overwritten by the default rerun
+
 Expected backend facts:
 - `backend='rust'`
 - `compiled_extension=True`
@@ -109,10 +113,14 @@ path.
 pytest code
 ```
 
-All tests must pass before a PR is opened. The accepted March 7
-run-of-record records `169/169` tests PASS in
-`proofs/logs/phase6_comet_run.txt`. One historical portability note
-remains open as lineage, not as the current authority verdict:
+All tests must pass before a PR is opened. Current test truth is lane-specific:
+
+- full operator tree with the private A6 Triton export present: `170 passed`
+- public snapshot without that private/operator artifact: `169 passed, 1 skipped`
+
+The public skip is intentional and limited to the operator-only Triton
+byte-identity check. One historical portability note remains open as
+lineage, not as the current authority verdict:
 
 Public Triton integrity rule:
 - the public test surface validates `code/deployment/triton/model_repository/zpe_tokenizer_onnx/1/model.onnx` against the committed `model.integrity.json`
@@ -121,10 +129,10 @@ Public Triton integrity rule:
 - Historical taste-lane failures tied to legacy absolute paths were
   tracked as `R-TASTE-LEGACY-PATH-COUPLING`. Do not fix this class of
   issue by hardcoding your own paths — the correct fix is path
-  normalisation. Keep the March 7 `169/169` authority result distinct
-  from that historical risk lineage and use `PUBLIC_AUDIT_LIMITS.md`
-  plus the current manifest/log pair as the public packet authority
-  root.
+  normalisation. If you are addressing this issue, see the risk
+  register in `proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md` and keep
+  the operator/public March 7 authority split distinct from that historical
+  risk note.
 
 CI runs `imc-ci.yml` on every PR. Your PR must pass CI before
 review begins. No exceptions.
@@ -185,7 +193,7 @@ external baseline cases. See `R-TOUCH-COMPARATOR-COVERAGE`.
   and IoT workstreams
 - PRs that inflate codec integrity claims into human-equivalence
   claims (scope discipline is a hard constraint — see `README.md`
-  and `PUBLIC_AUDIT_LIMITS.md`)
+  and `proofs/CONSOLIDATED_PROOF_REPORT.md`)
 - PRs without a passing CI run
 - PRs without evidence artifacts where the change touches codec
   behaviour, gate logic, or integration contracts
@@ -210,10 +218,8 @@ external baseline cases. See `R-TOUCH-COMPARATOR-COVERAGE`.
 
 4. **Add evidence** — if your change touches codec behaviour,
    include before/after metrics, a claim status delta, or a
-   falsification result as appropriate; attach evidence in the PR and
-   keep it aligned to the current shipped proof surface. The historical
-   `proofs/artifacts/` warehouse is not part of this reduced public
-   audit snapshot.
+   falsification result as appropriate; place artifacts under
+   `proofs/artifacts/`
 
 5. **Open the PR** — use the PR template; fill every field; do not
    leave the evidence section blank if your change is
@@ -246,8 +252,8 @@ Before opening an issue, check:
 
 - The Open Risks section in `README.md` — your issue may already
   be documented and adjudicated
-- `PUBLIC_AUDIT_LIMITS.md` — for current public-packet limits and
-  known auditor-facing boundaries
+- `proofs/IMC_WAVE1_RELEASE_READINESS_REPORT.md` — for
+  gate-level known issues
 
 Use the issue templates in `.github/ISSUE_TEMPLATE/`. An issue
 without a reproducible case or an evidence path will be closed

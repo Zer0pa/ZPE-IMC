@@ -7,22 +7,35 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-SAL%20v6.0-e5e7eb?labelColor=111111" alt="License: SAL v6.0"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/python-3.11%20%7C%203.12-e5e7eb?labelColor=111111" alt="Python 3.11 | 3.12"></a>
-  <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/current%20authority-2026--03--07%20accepted%20run-e5e7eb?labelColor=111111" alt="Current authority: accepted March 7 run"></a>
+  <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/current%20authority-2026--03--07%20operator%20proof-e5e7eb?labelColor=111111" alt="Current authority: March 7 operator proof"></a>
   <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/rust--backed-accepted%20path-e5e7eb?labelColor=111111" alt="Rust-backed accepted path"></a>
-  <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/run--of--record-276.8k%20IMC%20words%2Fs-e5e7eb?labelColor=111111" alt="Run-of-record 276.8k IMC words per second"></a>
+  <a href="proofs/logs/phase6_comet_run.txt"><img src="https://img.shields.io/badge/run--of--record-286.2k%20IMC%20words%2Fs-e5e7eb?labelColor=111111" alt="Run-of-record 286.2k IMC words per second"></a>
 </p>
 <p align="center">
   <a href="docs/FAQ.md"><img src="https://img.shields.io/badge/quick%20verify-setup%20%26%20check-e5e7eb?labelColor=111111" alt="Quick verify"></a>
+  <a href="AUDITOR_PLAYBOOK.md"><img src="https://img.shields.io/badge/auditor%20playbook-public%20audit%20path-e5e7eb?labelColor=111111" alt="Auditor Playbook"></a>
+  <a href="PUBLIC_AUDIT_LIMITS.md"><img src="https://img.shields.io/badge/public%20audit-explicit%20limits-e5e7eb?labelColor=111111" alt="Public Audit Limits"></a>
   <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/proof%20anchors-manifest%20%2B%20run%20log-e5e7eb?labelColor=111111" alt="Proof anchors: manifest and run log"></a>
   <a href="docs/ARCHITECTURE.md"><img src="https://img.shields.io/badge/architecture-runtime%20map-e5e7eb?labelColor=111111" alt="Architecture runtime map"></a>
   <a href="docs/LEGAL_BOUNDARIES.md"><img src="https://img.shields.io/badge/lane%20boundaries-smell%20%2F%20taste%20caveats-e5e7eb?labelColor=111111" alt="Lane boundaries: smell and taste caveats"></a>
-  <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/deterministic-byte--identical%20replay-e5e7eb?labelColor=111111" alt="Deterministic byte-identical replay"></a>
+  <a href="https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d?experiment-tab=panels&viewId=new"><img src="https://img.shields.io/badge/public%20workbook-March%207%20live%20twin-e5e7eb?labelColor=111111" alt="Public workbook: March 7 live twin"></a>
   <a href="docs/FAQ.md"><img src="https://img.shields.io/badge/cpu--native-no%20GPU%20required-e5e7eb?labelColor=111111" alt="CPU-native no GPU required"></a>
 </p>
 
-<p align="center">
-  <sub><a href="#current-authority">Current Authority</a> · <a href="#quick-verify">Quick Verify</a> · <a href="#proof-anchors">Proof Anchors</a> · <a href="#lane-boundaries">Lane Boundaries</a> · <a href="#go-next">Go Next</a></sub>
-</p>
+<table align="center" width="100%" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="25%"><a href="#quickstart-and-license"><img src=".github/assets/readme/nav/quickstart-and-license.svg" alt="Quickstart & License" width="100%"></a></td>
+    <td width="25%"><a href="#what-this-is"><img src=".github/assets/readme/nav/what-this-is.svg" alt="What This Is" width="100%"></a></td>
+    <td width="25%"><a href="#current-authority"><img src=".github/assets/readme/nav/current-authority.svg" alt="Current Authority" width="100%"></a></td>
+    <td width="25%"><a href="#runtime-proof-wave-1"><img src=".github/assets/readme/nav/runtime-proof.svg" alt="Runtime Proof" width="100%"></a></td>
+  </tr>
+  <tr>
+    <td width="25%"><a href="#modality-status-snapshot"><img src=".github/assets/readme/nav/modality-snapshot.svg" alt="Modality Snapshot" width="100%"></a></td>
+    <td width="25%"><a href="#throughput"><img src=".github/assets/readme/nav/throughput.svg" alt="Throughput" width="100%"></a></td>
+    <td width="25%"><a href="#public-ml-workbooks"><img src=".github/assets/readme/nav/public-ml-workbooks.svg" alt="Public ML Workbooks" width="100%"></a></td>
+    <td width="25%"><a href="#go-next"><img src=".github/assets/readme/nav/go-next.svg" alt="Go Next" width="100%"></a></td>
+  </tr>
+</table>
 
 <p>
   <img src=".github/assets/readme/section-bars/what-this-is.svg" alt="WHAT THIS IS" width="100%">
@@ -49,11 +62,11 @@ The governing claim is transport integrity across mixed modalities. No neural ne
     </tr>
     <tr>
       <td valign="top">What is the current authority state?</td>
-      <td valign="top">The accepted operator authority is the later March 7, 2026 Rust-backed saturated run. All locked values — run identity, backend truth, test state, throughput, and proof surfaces — are in the <a href="#current-authority">Current Authority</a> table below.</td>
+      <td valign="top">The current shipped operator authority is the later March 7, 2026 Rust-backed saturated run: <code>IMC-Canonical-20260307T225939Z</code> with <code>170 passed</code> in the full operator lane and <code>benchmark_run_id=A4-BENCH-20260307T230025Z</code>; the public snapshot rerun truth remains <code>169 passed, 1 skipped</code>, and the latest public live workbook twin is linked below.</td>
     </tr>
     <tr>
       <td valign="top">What is actually proved?</td>
-      <td valign="top">Native backend truth, deterministic byte-identical replay, integrated modality coverage across all ten user-facing modalities, and current throughput authority. Locked values are in the <a href="#current-authority">Current Authority</a> table below.</td>
+      <td valign="top">Native backend truth (<code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code>), deterministic byte-identical replay, integrated modality coverage across all ten user-facing modalities, and current shipped throughput authority of <code>286165.1102 imc_stream_words/sec</code>.</td>
     </tr>
     <tr>
       <td valign="top">What is not being claimed?</td>
@@ -61,13 +74,33 @@ The governing claim is transport integrity across mixed modalities. No neural ne
     </tr>
     <tr>
       <td valign="top">Where should an outsider acquire and verify?</td>
-      <td valign="top">Acquire from <code>https://github.com/Zer0pa/ZPE-Test.git</code>, run <code>python ./executable/run_with_comet.py</code>, inspect the rerun bundle under <code>proofs/reruns/IMC-Canonical-&lt;UTC timestamp&gt;/</code>, and use the shipped <code>proofs/logs/phase6_*</code> pair as stable operator reference artifacts.</td>
+      <td valign="top">Acquire from <code>https://github.com/Zer0pa/ZPE-IMC.git</code>, run <code>python ./executable/run_with_comet.py</code>, inspect the rerun bundle under <code>proofs/reruns/IMC-Canonical-&lt;UTC timestamp&gt;/</code>, and use the shipped <code>proofs/logs/phase6_*</code> pair as stable operator reference artifacts.</td>
     </tr>
   </tbody>
 </table>
 
 <a id="current-authority"></a>
 <h2 align="center">Current Authority</h2>
+
+<table width="100%" border="1" bordercolor="#111111" cellpadding="16" cellspacing="0">
+  <tr>
+    <td width="33%" valign="top">
+      <strong>Accepted run-of-record</strong><br>
+      <code>IMC-Canonical-20260307T225939Z</code><sup><a href="proofs/logs/phase6_run_of_record_manifest.json">[Proof]</a></sup><br><br>
+      This is the current shipped operator run-of-record. The latest public live workbook twin is linked below.
+    </td>
+    <td width="33%" valign="top">
+      <strong>Backend truth</strong><br>
+      <code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code><br><br>
+      The current authority path is the compiled native extension, not a Python fallback.
+    </td>
+    <td width="34%" valign="top">
+      <strong>Current throughput authority</strong><br>
+      <code>canonical_total_words_per_sec=286165.1102</code>, <code>throughput_encode_words_per_sec=64846.8071</code>, <code>throughput_decode_words_per_sec=199119.0278</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup><br><br>
+      These are the current shipped operator headline numbers from the manifest/log pair.
+    </td>
+  </tr>
+</table>
 
 <table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
   <thead>
@@ -80,8 +113,8 @@ The governing claim is transport integrity across mixed modalities. No neural ne
   <tbody>
     <tr>
       <td valign="top">Accepted run-of-record</td>
-      <td valign="top"><code>IMC-Canonical-20260307T131330Z</code></td>
-      <td valign="top">This is the later accepted March 7 Rust-backed saturated run and supersedes the earlier same-day rerun.</td>
+      <td valign="top"><code>IMC-Canonical-20260307T225939Z</code><sup><a href="proofs/logs/phase6_run_of_record_manifest.json">[Proof]</a></sup></td>
+      <td valign="top">This is the current shipped operator run-of-record.</td>
     </tr>
     <tr>
       <td valign="top">Test state</td>
@@ -94,59 +127,14 @@ The governing claim is transport integrity across mixed modalities. No neural ne
       <td valign="top">The current authority path is the compiled native extension, not a Python fallback.</td>
     </tr>
     <tr>
-      <td valign="top">Run-of-record manifest</td>
-      <td valign="top"><code>PASS</code></td>
-      <td valign="top">Current live authority artifact with backend truth, saturation facts, benchmark id, and live URLs.</td>
-    </tr>
-    <tr>
-      <td valign="top">Benchmark run id</td>
-      <td valign="top"><code>A4-BENCH-20260307T131414Z</code></td>
-      <td valign="top">Current benchmark identity mirrored by the manifest, run log, and benchmark artifacts.</td>
-    </tr>
-    <tr>
-      <td valign="top">Workers</td>
-      <td valign="top"><code>8</code></td>
-      <td valign="top">Parallel workers used in the accepted run.</td>
-    </tr>
-    <tr>
-      <td valign="top">Canonical throughput</td>
-      <td valign="top"><code>canonical_total_words_per_sec=276798.7185</code></td>
-      <td valign="top">Accepted saturated steady-state parallel-batch transport throughput.</td>
-    </tr>
-    <tr>
-      <td valign="top">Encode throughput</td>
-      <td valign="top"><code>throughput_encode_words_per_sec=94104.7837</code></td>
-      <td valign="top">Accepted wrapper encode throughput on the native path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Decode throughput</td>
-      <td valign="top"><code>throughput_decode_words_per_sec=296145.6735</code></td>
-      <td valign="top">Accepted wrapper decode throughput on the native path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Short-text latency p50</td>
-      <td valign="top"><code>0.377 ms</code></td>
-      <td valign="top">Current accepted short-text benchmark headline from the run-of-record manifest.</td>
+      <td valign="top">Current throughput authority</td>
+      <td valign="top"><code>canonical_total_words_per_sec=286165.1102</code>, <code>throughput_encode_words_per_sec=64846.8071</code>, <code>throughput_decode_words_per_sec=199119.0278</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">These are the current shipped operator headline numbers for the Rust-backed path.</td>
     </tr>
     <tr>
       <td valign="top">Throughput unit</td>
       <td valign="top"><code>imc_stream_words/sec</code></td>
       <td valign="top">All README throughput numbers use transport words, not natural-language words per second.</td>
-    </tr>
-    <tr>
-      <td valign="top">Deterministic replay</td>
-      <td valign="top"><code>determinism_hash_match=1</code>, <code>all_deterministic=1</code></td>
-      <td valign="top">Replay is byte-identical on the accepted proof path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Modality coverage</td>
-      <td valign="top"><code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code></td>
-      <td valign="top">The promoted path integrates all ten user-facing modalities.</td>
-    </tr>
-    <tr>
-      <td valign="top">Historical demo anchor</td>
-      <td valign="top"><code>844</code> Wave-1 demo</td>
-      <td valign="top">Frozen compatibility and historical context only; not the current runtime authority.</td>
     </tr>
     <tr>
       <td valign="top">Authority artifacts</td>
@@ -155,11 +143,16 @@ The governing claim is transport integrity across mixed modalities. No neural ne
     </tr>
     <tr>
       <td valign="top">External acquisition surface</td>
-      <td valign="top"><code>https://github.com/Zer0pa/ZPE-Test.git</code></td>
-      <td valign="top">This is the real outsider clone target, even if it can lag the source repo.</td>
+      <td valign="top"><code>https://github.com/Zer0pa/ZPE-IMC.git</code></td>
+      <td valign="top">This is the canonical outsider clone target, even when the live working tree is ahead of public snapshot updates.</td>
     </tr>
   </tbody>
 </table>
+
+The latest public live workbook twin for March 7 observability is
+<code>IMC-Canonical-20260307T131330Z</code> on Comet. Keep using that
+surface for public live telemetry lineage, but do not confuse it with
+the exact shipped operator packet above.
 
 <h3 align="center">Three Dimensions Of Authority</h3>
 
@@ -197,7 +190,34 @@ The governing claim is transport integrity across mixed modalities. No neural ne
 <a id="runtime-proof-wave-1"></a>
 <h2 align="center">Runtime Proof (Wave-1)</h2>
 
-All locked runtime values are in the <a href="#current-authority">Current Authority</a> table above. Build/install from <code>code/rust/imc_kernel/build_install.sh</code>, verify with <code>zpe_multimodal.core.imc.get_kernel_backend_info()</code>, and treat the manifest/log pair as the top proof surface.
+The current operator authority is the saturated Rust-backed phase6 run-of-record. Build/install from <code>code/rust/imc_kernel/build_install.sh</code>, verify with <code>zpe_multimodal.core.imc.get_kernel_backend_info()</code>, and treat the manifest/log pair as the top proof surface.
+
+<table width="100%" border="1" bordercolor="#111111" cellpadding="16" cellspacing="0">
+  <tr>
+      <td width="50%" valign="top">
+        <strong>Run-of-record manifest</strong><br>
+        <code>PASS</code><br><br>
+      Current live authority artifact with backend truth, saturation facts, benchmark id, and optional live telemetry URLs.
+      </td>
+    <td width="50%" valign="top">
+      <strong>Native backend truth</strong><br>
+      <code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code><br><br>
+      The accepted runtime is the compiled Rust extension, not a Python fallback.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Deterministic replay</strong><br>
+      <code>determinism_hash_match=1</code>, <code>all_deterministic=1</code><sup><a href="https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d?experiment-tab=panels&viewId=new">[Comet]</a></sup><br><br>
+      Replay is byte-identical on the accepted proof path.
+    </td>
+    <td width="50%" valign="top">
+      <strong>Modality coverage</strong><br>
+      <code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code><sup><a href="https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d?experiment-tab=panels&viewId=new">[Comet]</a></sup><br><br>
+      The promoted path integrates all ten user-facing modalities.
+    </td>
+  </tr>
+</table>
 
 ### Proof Anchors
 
@@ -212,6 +232,53 @@ All locked runtime values are in the <a href="#current-authority">Current Author
   </tr>
 </table>
 
+<table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
+  <thead>
+    <tr>
+      <th align="left" width="24%">Proof rung</th>
+      <th align="left" width="34%">Locked value</th>
+      <th align="left" width="42%">What it proves now</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top">Run-of-record manifest</td>
+      <td valign="top"><code>PASS</code></td>
+      <td valign="top">Current live authority artifact with backend truth, saturation facts, benchmark id, and optional live telemetry URLs.</td>
+    </tr>
+    <tr>
+      <td valign="top">Native backend truth</td>
+      <td valign="top"><code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code></td>
+      <td valign="top">The accepted runtime is the compiled Rust extension, not a Python fallback.</td>
+    </tr>
+    <tr>
+      <td valign="top">Accepted March 7 rerun</td>
+      <td valign="top"><code>run_name=IMC-Canonical-20260307T225939Z</code>, <code>170 passed</code> in the full operator lane, <code>8</code> workers, <code>benchmark_run_id=A4-BENCH-20260307T230025Z</code></td>
+      <td valign="top">This is the current shipped operator run-of-record. The older March 7 live workbook twin remains separate public observability lineage.</td>
+    </tr>
+    <tr>
+      <td valign="top">Current throughput authority</td>
+      <td valign="top"><code>canonical_total_words_per_sec=286165.1102</code>, <code>throughput_encode_words_per_sec=64846.8071</code>, <code>throughput_decode_words_per_sec=199119.0278</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">Current shipped saturated steady-state wrapper ceiling for the Rust-backed path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Deterministic replay</td>
+      <td valign="top"><code>determinism_hash_match=1</code>, <code>benchmark_all_deterministic=1</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">Replay is byte-identical on the accepted proof path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Modality coverage</td>
+      <td valign="top"><code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">The promoted path integrates all ten user-facing modalities.</td>
+    </tr>
+    <tr>
+      <td valign="top">Historical demo anchor</td>
+      <td valign="top"><code>844</code> Wave-1 demo</td>
+      <td valign="top">Frozen compatibility and historical context only; not the current runtime authority.</td>
+    </tr>
+  </tbody>
+</table>
+
 <p>
   <img src=".github/assets/readme/section-bars/quickstart-and-license.svg" alt="QUICKSTART AND LICENSE" width="100%">
 </p>
@@ -224,7 +291,7 @@ All locked runtime values are in the <a href="#current-authority">Current Author
 Use the clone/install path below as repository verification guidance, not as packaged public-release guidance.
 
 ```bash
-git clone https://github.com/Zer0pa/ZPE-Test.git zpe-imc
+git clone https://github.com/Zer0pa/ZPE-IMC.git zpe-imc
 cd zpe-imc
 python -m venv .venv
 source .venv/bin/activate
@@ -244,6 +311,7 @@ Expected accepted state:
 - <code>backend='rust'</code>
 - <code>compiled_extension=True</code>
 - <code>fallback_used=False</code>
+- <code>python -m pytest code -q</code> is a valid direct public replay path after the editable install and uses the canonical <code>zpe_multimodal.*</code> package surface
 - Local rerun bundle emitted under <code>proofs/reruns/IMC-Canonical-&lt;UTC timestamp&gt;/</code>
 - Shipped operator reference artifacts remain at <code>proofs/logs/phase6_run_of_record_manifest.json</code> and <code>proofs/logs/phase6_comet_run.txt</code>
 
@@ -393,7 +461,129 @@ Folders and transport markers remain shared where designed, but current-facing s
 <a id="throughput"></a>
 <h2 align="center">Throughput</h2>
 
-All throughput numbers, latency headlines, and benchmark identity are locked in the <a href="#current-authority">Current Authority</a> table above. The accepted front-door performance authority is the later saturated Rust-backed run recorded in the manifest/log pair. Older hardware comparison tables are historical benchmark ancestry, not the current operator ceiling.
+The accepted front-door performance authority is the current shipped saturated Rust-backed operator run recorded in the manifest/log pair. The public workbooks below remain live observability lineage, not the exact current source packet.
+
+<table width="100%" border="1" bordercolor="#111111" cellpadding="16" cellspacing="0">
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Canonical throughput</strong><br>
+      <code>286165.1102</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup><br><br>
+      Current shipped saturated steady-state parallel-batch transport throughput.
+    </td>
+    <td width="50%" valign="top">
+      <strong>Encode throughput</strong><br>
+      <code>64846.8071</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup><br><br>
+      Current shipped wrapper encode throughput on the native path.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <strong>Decode throughput</strong><br>
+      <code>199119.0278</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup><br><br>
+      Current shipped wrapper decode throughput on the native path.
+    </td>
+    <td width="50%" valign="top">
+      <strong>Short-text latency p50</strong><br>
+      <code>0.3913 ms</code><sup><a href="code/benchmarks/artifacts/BENCHMARK_REPORT.md">[Proof]</a></sup><br><br>
+      Current shipped short-text benchmark headline from the benchmark report.
+    </td>
+  </tr>
+</table>
+
+<table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
+  <thead>
+    <tr>
+      <th align="left" width="24%">Measure</th>
+      <th align="left" width="28%">Locked value</th>
+      <th align="left" width="48%">Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top">Rate unit</td>
+      <td valign="top"><code>imc_stream_words/sec</code></td>
+      <td valign="top">All throughput figures below are transport words, not natural-language words per second.</td>
+    </tr>
+    <tr>
+      <td valign="top">Run name</td>
+      <td valign="top"><code>IMC-Canonical-20260307T225939Z</code><sup><a href="proofs/logs/phase6_run_of_record_manifest.json">[Proof]</a></sup></td>
+      <td valign="top">Current shipped March 7 operator run-of-record.</td>
+    </tr>
+    <tr>
+      <td valign="top">Benchmark run id</td>
+      <td valign="top"><code>A4-BENCH-20260307T230025Z</code><sup><a href="proofs/logs/phase6_run_of_record_manifest.json">[Proof]</a></sup></td>
+      <td valign="top">Current benchmark identity mirrored by the manifest, run log, and benchmark artifacts.</td>
+    </tr>
+    <tr>
+      <td valign="top">Canonical throughput</td>
+      <td valign="top"><code>286165.1102</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">Current shipped saturated steady-state parallel-batch transport throughput.</td>
+    </tr>
+    <tr>
+      <td valign="top">Encode throughput</td>
+      <td valign="top"><code>64846.8071</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">Current shipped wrapper encode throughput on the native path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Decode throughput</td>
+      <td valign="top"><code>199119.0278</code><sup><a href="proofs/logs/phase6_comet_run.txt">[Proof]</a></sup></td>
+      <td valign="top">Current shipped wrapper decode throughput on the native path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Short-text latency p50</td>
+      <td valign="top"><code>0.3913 ms</code><sup><a href="code/benchmarks/artifacts/BENCHMARK_REPORT.md">[Proof]</a></sup></td>
+      <td valign="top">Current shipped short-text benchmark headline from the benchmark report.</td>
+    </tr>
+  </tbody>
+</table>
+
+<a id="public-ml-workbooks"></a>
+<h2 align="center">Public ML Workbooks</h2>
+
+These are the public Comet workbooks that map cleanly to the current README's observability lineage. The first row is the latest public live twin for the March 7 authority family, but it is not the exact shipped operator packet promoted above; the remaining rows are useful lineage only.
+
+<table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
+  <thead>
+    <tr>
+      <th align="left" width="26%">Role</th>
+      <th align="left" width="24%">Run name</th>
+      <th align="left" width="22%">Benchmark run id</th>
+      <th align="left" width="28%">Workbook</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top">Latest public live twin</td>
+      <td valign="top"><code>IMC-Canonical-20260307T131330Z</code></td>
+      <td valign="top"><code>A4-BENCH-20260307T131414Z</code></td>
+      <td valign="top"><a href="https://www.comet.com/zer0pa/zpe-imc-performance/1d08a49dfc2e4684bc3f537117df981d?experiment-tab=panels&viewId=new"><code>1d08a49dfc2e4684bc3f537117df981d</code></a></td>
+    </tr>
+    <tr>
+      <td valign="top">Historical lineage</td>
+      <td valign="top"><code>IMC-Canonical-20260307T124656Z</code></td>
+      <td valign="top"><code>A4-BENCH-20260307T124746Z</code></td>
+      <td valign="top"><a href="https://www.comet.com/zer0pa/zpe-imc-performance/1e54c33b10aa458d8a09d485d38abfbc?experiment-tab=panels&viewId=new"><code>1e54c33b10aa458d8a09d485d38abfbc</code></a></td>
+    </tr>
+    <tr>
+      <td valign="top">Historical lineage</td>
+      <td valign="top"><code>IMC-Canonical-20260307T113918Z</code></td>
+      <td valign="top"><code>A4-BENCH-20260307T114002Z</code></td>
+      <td valign="top"><a href="https://www.comet.com/zer0pa/zpe-imc-performance/5458458688344f52bb85128e3d71cda9?experiment-tab=panels&viewId=new"><code>5458458688344f52bb85128e3d71cda9</code></a></td>
+    </tr>
+    <tr>
+      <td valign="top">Historical lineage</td>
+      <td valign="top"><code>IMC-Canonical-20260307T102831Z</code></td>
+      <td valign="top"><code>A4-BENCH-20260307T102931Z</code></td>
+      <td valign="top"><a href="https://www.comet.com/zer0pa/zpe-imc-performance/7f8d428d065a446aba03518e654b06ce?experiment-tab=panels&viewId=new"><code>7f8d428d065a446aba03518e654b06ce</code></a></td>
+    </tr>
+    <tr>
+      <td valign="top">Historical lineage</td>
+      <td valign="top"><code>IMC-Canonical-20260307T012457Z</code></td>
+      <td valign="top"><code>A4-BENCH-20260307T012849Z</code></td>
+      <td valign="top"><a href="https://www.comet.com/zer0pa/zpe-imc-performance/e13cbb4c8bd34130923d65c150200591?experiment-tab=panels&viewId=new"><code>e13cbb4c8bd34130923d65c150200591</code></a></td>
+    </tr>
+  </tbody>
+</table>
 
 <p>
   <img src=".github/assets/readme/section-bars/repo-shape.svg" alt="REPO SHAPE" width="100%">
@@ -421,6 +611,14 @@ All throughput numbers, latency headlines, and benchmark identity are locked in 
     <tr>
       <td valign="top">Read legal and lane-specific public boundaries</td>
       <td valign="top"><a href="docs/LEGAL_BOUNDARIES.md"><code>docs/LEGAL_BOUNDARIES.md</code></a></td>
+    </tr>
+    <tr>
+      <td valign="top">Audit historical compatibility and replay boundaries</td>
+      <td valign="top"><a href="AUDITOR_PLAYBOOK.md"><code>AUDITOR_PLAYBOOK.md</code></a></td>
+    </tr>
+    <tr>
+      <td valign="top">Read public audit limits and explicit non-claims</td>
+      <td valign="top"><a href="PUBLIC_AUDIT_LIMITS.md"><code>PUBLIC_AUDIT_LIMITS.md</code></a></td>
     </tr>
     <tr>
       <td valign="top">Inspect the benchmark report behind the accepted run</td>
@@ -476,7 +674,7 @@ All throughput numbers, latency headlines, and benchmark identity are locked in 
 <h2 align="center">Open Risks (Non-Blocking)</h2>
 
 - Optional audio dependency chain may fail on some Python 3.14 environments; Python 3.11 and 3.12 remain the practical baseline for full audio paths.
-- The provisioned external auditor snapshot at <code>https://github.com/Zer0pa/ZPE-Test.git</code> can lag the live working tree; within any acquired tree, use the manifest/log pair and current docs as the authority root.
+- The public repo at <code>https://github.com/Zer0pa/ZPE-IMC.git</code> can still lag the live working tree; within any acquired tree, use the manifest/log pair and current docs as the authority root.
 - Some scripts and docs still include machine-absolute paths and need portability cleanup.
 - Live cloud reruns require valid <code>COMET_API_KEY</code> and <code>OPIK_API_KEY</code> in the operator environment.
 - H200 validation is owner-deferred and non-blocking pending replay on actual H200 hardware under the locked <code>WS3</code> protocol; do not publish H200 comparative performance claims until that evidence exists.

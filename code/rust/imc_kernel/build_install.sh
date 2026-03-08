@@ -4,11 +4,22 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "${ROOT_DIR}/../../.." && pwd)"
 DEFAULT_PYTHON="${REPO_ROOT}/.venv/bin/python"
-PYTHON_BIN="${PYTHON_BIN:-${DEFAULT_PYTHON}}"
-
-if [[ ! -x "${PYTHON_BIN}" ]]; then
-  PYTHON_BIN="$(command -v python3)"
+if [[ -n "${PYTHON_BIN:-}" ]]; then
+  SELECTED_PYTHON="${PYTHON_BIN}"
+elif [[ -n "${VIRTUAL_ENV:-}" && -x "${VIRTUAL_ENV}/bin/python" ]]; then
+  SELECTED_PYTHON="${VIRTUAL_ENV}/bin/python"
+elif [[ -x "${DEFAULT_PYTHON}" ]]; then
+  SELECTED_PYTHON="${DEFAULT_PYTHON}"
+else
+  SELECTED_PYTHON="$(command -v python3 || true)"
 fi
+
+if [[ -z "${SELECTED_PYTHON}" || ! -x "${SELECTED_PYTHON}" ]]; then
+  echo "unable to locate a usable python interpreter; activate a venv or set PYTHON_BIN" >&2
+  exit 1
+fi
+
+PYTHON_BIN="${SELECTED_PYTHON}"
 
 PY_PLATFORM="$("${PYTHON_BIN}" - <<'PY'
 import sysconfig

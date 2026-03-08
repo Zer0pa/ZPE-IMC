@@ -14,10 +14,10 @@ from tests.common import configure_env
 
 configure_env()
 
-from source.core.constants import WORD_MASK
-from source.core.codec import _encode_noemoji_python
-from source.core.imc import IMCDecoder, IMCEncoder, get_kernel_backend_info, validate_stream
-from source.core.imc_native import (
+from zpe_multimodal.core.constants import WORD_MASK
+from zpe_multimodal.core.codec import _encode_noemoji_python
+from zpe_multimodal.core.imc import IMCDecoder, IMCEncoder, get_kernel_backend_info, validate_stream
+from zpe_multimodal.core.imc_native import (
     decode_quadtree_kernel,
     encode_quadtree_kernel,
     encode_text_kernel,
@@ -25,7 +25,7 @@ from source.core.imc_native import (
     scan_stream_batch_kernel,
     scan_stream_kernel,
 )
-from source.image.quadtree_enhanced_codec import IMAGE_FAMILY_VALUE, decode_enhanced_payloads, encode_enhanced
+from zpe_multimodal.image.quadtree_enhanced_codec import IMAGE_FAMILY_VALUE, decode_enhanced_payloads, encode_enhanced
 
 
 def test_rust_kernel_backend_reports_compiled_native_extension() -> None:
