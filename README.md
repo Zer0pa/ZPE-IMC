@@ -1,17 +1,13 @@
-<div align="center">
-
 # ZPE-IMC
 
-**Deterministic · CPU-native · 10-modality transport · No GPU required**
-
-<p>
+<p align="left">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-SAL%20v6.0-orange" alt="License: SAL v6.0"></a>
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/python-3.11%20%7C%203.12-blue" alt="Python 3.11 | 3.12"></a>
   <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/current%20authority-2026--03--07%20accepted%20run-2ea44f" alt="Current authority: accepted March 7 run"></a>
   <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/rust--backed-accepted%20path-2ea44f" alt="Rust-backed accepted path"></a>
   <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/run--of--record-276.8k%20IMC%20words%2Fs-005cc5" alt="Run-of-record 276.8k IMC words per second"></a>
 </p>
-<p>
+<p align="left">
   <a href="docs/FAQ.md"><img src="https://img.shields.io/badge/quick%20verify-setup%20%26%20check-0969da" alt="Quick verify"></a>
   <a href="proofs/logs/phase6_run_of_record_manifest.json"><img src="https://img.shields.io/badge/proof%20anchors-manifest%20%2B%20run%20log-0969da" alt="Proof anchors: manifest and run log"></a>
   <a href="docs/ARCHITECTURE.md"><img src="https://img.shields.io/badge/architecture-runtime%20map-0969da" alt="Architecture runtime map"></a>
@@ -20,11 +16,11 @@
   <a href="docs/FAQ.md"><img src="https://img.shields.io/badge/cpu--native-no%20GPU%20required-2ea44f" alt="CPU-native no GPU required"></a>
 </p>
 
-<img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE-IMC Masthead" width="100%">
+<p>
+  <img src=".github/assets/readme/zpe-masthead.gif" alt="ZPE-IMC Masthead" width="100%">
+</p>
 
 [Current Authority](#current-authority) · [Quick Verify](#quick-verify) · [Proof Anchors](#proof-anchors) · [Lane Boundaries](#lane-boundaries) · [Go Next](#go-next)
-
-</div>
 
 <p>
   <img src=".github/assets/readme/section-bars/what-this-is.svg" alt="WHAT THIS IS" width="100%">
@@ -139,9 +135,9 @@ The current operator authority is the saturated Rust-backed phase6 run-of-record
 | Modality coverage | <code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code> | The promoted path integrates all ten user-facing modalities. |
 | Historical demo anchor | <code>844</code> Wave-1 demo | Frozen compatibility and historical context only; not the current runtime authority. |
 
-<div align="center">
+<p>
   <img src=".github/assets/readme/zpe-masthead-option-3-2.gif" alt="ZPE-IMC Mid Masthead" width="100%">
-</div>
+</p>
 
 <p>
   <img src=".github/assets/readme/section-bars/modality-status-snapshot.svg" alt="MODALITY STATUS SNAPSHOT" width="100%">
@@ -224,9 +220,9 @@ The accepted front-door performance authority is the later saturated Rust-backed
 - Live cloud reruns require valid <code>COMET_API_KEY</code> and <code>OPIK_API_KEY</code> in the operator environment.
 - H200 validation is owner-deferred and non-blocking pending replay on actual H200 hardware under the locked <code>WS3</code> protocol; do not publish H200 comparative performance claims until that evidence exists.
 
-<div align="center">
+<p>
   <img src=".github/assets/readme/zpe-masthead-option-3-3.gif" alt="ZPE-IMC Lower Masthead" width="100%">
-</div>
+</p>
 
 <p>
   <img src=".github/assets/readme/section-bars/contributing-security-support.svg" alt="CONTRIBUTING, SECURITY, SUPPORT" width="100%">
