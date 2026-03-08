@@ -49,11 +49,11 @@ The governing claim is transport integrity across mixed modalities. No neural ne
     </tr>
     <tr>
       <td valign="top">What is the current authority state?</td>
-      <td valign="top">The accepted operator authority is the later March 7, 2026 Rust-backed saturated run: <code>IMC-Canonical-20260307T131330Z</code> with <code>170 passed</code> in the full operator lane and <code>benchmark_run_id=A4-BENCH-20260307T131414Z</code>; the public snapshot rerun truth is <code>169 passed, 1 skipped</code>.</td>
+      <td valign="top">The accepted operator authority is the later March 7, 2026 Rust-backed saturated run. All locked values — run identity, backend truth, test state, throughput, and proof surfaces — are in the <a href="#current-authority">Current Authority</a> table below.</td>
     </tr>
     <tr>
       <td valign="top">What is actually proved?</td>
-      <td valign="top">Native backend truth (<code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code>), deterministic byte-identical replay, integrated modality coverage across all ten user-facing modalities, and current throughput authority of <code>276798.7185 imc_stream_words/sec</code>.</td>
+      <td valign="top">Native backend truth, deterministic byte-identical replay, integrated modality coverage across all ten user-facing modalities, and current throughput authority. Locked values are in the <a href="#current-authority">Current Authority</a> table below.</td>
     </tr>
     <tr>
       <td valign="top">What is not being claimed?</td>
@@ -69,26 +69,6 @@ The governing claim is transport integrity across mixed modalities. No neural ne
 <a id="current-authority"></a>
 <h2 align="center">Current Authority</h2>
 
-<table width="100%" border="1" bordercolor="#111111" cellpadding="16" cellspacing="0">
-  <tr>
-    <td width="33%" valign="top">
-      <strong>Accepted run-of-record</strong><br>
-      <code>IMC-Canonical-20260307T131330Z</code><br><br>
-      This is the later accepted March 7 Rust-backed saturated run.
-    </td>
-    <td width="33%" valign="top">
-      <strong>Backend truth</strong><br>
-      <code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code><br><br>
-      The current authority path is the compiled native extension, not a Python fallback.
-    </td>
-    <td width="34%" valign="top">
-      <strong>Current throughput authority</strong><br>
-      <code>canonical_total_words_per_sec=276798.7185</code>, <code>throughput_encode_words_per_sec=94104.7837</code>, <code>throughput_decode_words_per_sec=296145.6735</code><br><br>
-      These are the accepted front-door headline numbers for the Rust-backed path.
-    </td>
-  </tr>
-</table>
-
 <table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
   <thead>
     <tr>
@@ -101,7 +81,7 @@ The governing claim is transport integrity across mixed modalities. No neural ne
     <tr>
       <td valign="top">Accepted run-of-record</td>
       <td valign="top"><code>IMC-Canonical-20260307T131330Z</code></td>
-      <td valign="top">This is the later accepted March 7 Rust-backed saturated run.</td>
+      <td valign="top">This is the later accepted March 7 Rust-backed saturated run and supersedes the earlier same-day rerun.</td>
     </tr>
     <tr>
       <td valign="top">Test state</td>
@@ -114,14 +94,59 @@ The governing claim is transport integrity across mixed modalities. No neural ne
       <td valign="top">The current authority path is the compiled native extension, not a Python fallback.</td>
     </tr>
     <tr>
-      <td valign="top">Current throughput authority</td>
-      <td valign="top"><code>canonical_total_words_per_sec=276798.7185</code>, <code>throughput_encode_words_per_sec=94104.7837</code>, <code>throughput_decode_words_per_sec=296145.6735</code></td>
-      <td valign="top">These are the accepted front-door headline numbers for the Rust-backed path.</td>
+      <td valign="top">Run-of-record manifest</td>
+      <td valign="top"><code>PASS</code></td>
+      <td valign="top">Current live authority artifact with backend truth, saturation facts, benchmark id, and live URLs.</td>
+    </tr>
+    <tr>
+      <td valign="top">Benchmark run id</td>
+      <td valign="top"><code>A4-BENCH-20260307T131414Z</code></td>
+      <td valign="top">Current benchmark identity mirrored by the manifest, run log, and benchmark artifacts.</td>
+    </tr>
+    <tr>
+      <td valign="top">Workers</td>
+      <td valign="top"><code>8</code></td>
+      <td valign="top">Parallel workers used in the accepted run.</td>
+    </tr>
+    <tr>
+      <td valign="top">Canonical throughput</td>
+      <td valign="top"><code>canonical_total_words_per_sec=276798.7185</code></td>
+      <td valign="top">Accepted saturated steady-state parallel-batch transport throughput.</td>
+    </tr>
+    <tr>
+      <td valign="top">Encode throughput</td>
+      <td valign="top"><code>throughput_encode_words_per_sec=94104.7837</code></td>
+      <td valign="top">Accepted wrapper encode throughput on the native path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Decode throughput</td>
+      <td valign="top"><code>throughput_decode_words_per_sec=296145.6735</code></td>
+      <td valign="top">Accepted wrapper decode throughput on the native path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Short-text latency p50</td>
+      <td valign="top"><code>0.377 ms</code></td>
+      <td valign="top">Current accepted short-text benchmark headline from the run-of-record manifest.</td>
     </tr>
     <tr>
       <td valign="top">Throughput unit</td>
       <td valign="top"><code>imc_stream_words/sec</code></td>
       <td valign="top">All README throughput numbers use transport words, not natural-language words per second.</td>
+    </tr>
+    <tr>
+      <td valign="top">Deterministic replay</td>
+      <td valign="top"><code>determinism_hash_match=1</code>, <code>all_deterministic=1</code></td>
+      <td valign="top">Replay is byte-identical on the accepted proof path.</td>
+    </tr>
+    <tr>
+      <td valign="top">Modality coverage</td>
+      <td valign="top"><code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code></td>
+      <td valign="top">The promoted path integrates all ten user-facing modalities.</td>
+    </tr>
+    <tr>
+      <td valign="top">Historical demo anchor</td>
+      <td valign="top"><code>844</code> Wave-1 demo</td>
+      <td valign="top">Frozen compatibility and historical context only; not the current runtime authority.</td>
     </tr>
     <tr>
       <td valign="top">Authority artifacts</td>
@@ -172,34 +197,7 @@ The governing claim is transport integrity across mixed modalities. No neural ne
 <a id="runtime-proof-wave-1"></a>
 <h2 align="center">Runtime Proof (Wave-1)</h2>
 
-The current operator authority is the saturated Rust-backed phase6 run-of-record. Build/install from <code>code/rust/imc_kernel/build_install.sh</code>, verify with <code>zpe_multimodal.core.imc.get_kernel_backend_info()</code>, and treat the manifest/log pair as the top proof surface.
-
-<table width="100%" border="1" bordercolor="#111111" cellpadding="16" cellspacing="0">
-  <tr>
-    <td width="50%" valign="top">
-      <strong>Run-of-record manifest</strong><br>
-      <code>PASS</code><br><br>
-      Current live authority artifact with backend truth, saturation facts, benchmark id, and live URLs.
-    </td>
-    <td width="50%" valign="top">
-      <strong>Native backend truth</strong><br>
-      <code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code><br><br>
-      The accepted runtime is the compiled Rust extension, not a Python fallback.
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <strong>Deterministic replay</strong><br>
-      <code>determinism_hash_match=1</code>, <code>all_deterministic=1</code><br><br>
-      Replay is byte-identical on the accepted proof path.
-    </td>
-    <td width="50%" valign="top">
-      <strong>Modality coverage</strong><br>
-      <code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code><br><br>
-      The promoted path integrates all ten user-facing modalities.
-    </td>
-  </tr>
-</table>
+All locked runtime values are in the <a href="#current-authority">Current Authority</a> table above. Build/install from <code>code/rust/imc_kernel/build_install.sh</code>, verify with <code>zpe_multimodal.core.imc.get_kernel_backend_info()</code>, and treat the manifest/log pair as the top proof surface.
 
 ### Proof Anchors
 
@@ -212,53 +210,6 @@ The current operator authority is the saturated Rust-backed phase6 run-of-record
     <td width="50%" valign="top"><a href="code/benchmarks/artifacts/BENCHMARK_REPORT.md"><code>code/benchmarks/artifacts/BENCHMARK_REPORT.md</code></a><br><br>current benchmark report referenced by the manifest and run log.</td>
     <td width="50%" valign="top"><a href="docs/ARCHITECTURE.md"><code>docs/ARCHITECTURE.md</code></a><br><br>runtime map and authority class definitions.</td>
   </tr>
-</table>
-
-<table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
-  <thead>
-    <tr>
-      <th align="left" width="24%">Proof rung</th>
-      <th align="left" width="34%">Locked value</th>
-      <th align="left" width="42%">What it proves now</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td valign="top">Run-of-record manifest</td>
-      <td valign="top"><code>PASS</code></td>
-      <td valign="top">Current live authority artifact with backend truth, saturation facts, benchmark id, and live URLs.</td>
-    </tr>
-    <tr>
-      <td valign="top">Native backend truth</td>
-      <td valign="top"><code>backend=rust</code>, <code>compiled_extension=1</code>, <code>fallback_used=0</code></td>
-      <td valign="top">The accepted runtime is the compiled Rust extension, not a Python fallback.</td>
-    </tr>
-    <tr>
-      <td valign="top">Accepted March 7 rerun</td>
-      <td valign="top"><code>run_name=IMC-Canonical-20260307T131330Z</code>, <code>170 passed</code> in the full operator lane, <code>8</code> workers, <code>benchmark_run_id=A4-BENCH-20260307T131414Z</code></td>
-      <td valign="top">This is the later accepted March 7 run-of-record and supersedes the earlier same-day rerun; the public snapshot rerun truth is the separate <code>169 passed, 1 skipped</code> lane.</td>
-    </tr>
-    <tr>
-      <td valign="top">Current throughput authority</td>
-      <td valign="top"><code>canonical_total_words_per_sec=276798.7185</code>, <code>throughput_encode_words_per_sec=94104.7837</code>, <code>throughput_decode_words_per_sec=296145.6735</code></td>
-      <td valign="top">Accepted saturated steady-state wrapper ceiling for the Rust-backed path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Deterministic replay</td>
-      <td valign="top"><code>determinism_hash_match=1</code>, <code>all_deterministic=1</code></td>
-      <td valign="top">Replay is byte-identical on the accepted proof path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Modality coverage</td>
-      <td valign="top"><code>modality_coverage_count=10</code>, <code>modality_coverage_all=1</code></td>
-      <td valign="top">The promoted path integrates all ten user-facing modalities.</td>
-    </tr>
-    <tr>
-      <td valign="top">Historical demo anchor</td>
-      <td valign="top"><code>844</code> Wave-1 demo</td>
-      <td valign="top">Frozen compatibility and historical context only; not the current runtime authority.</td>
-    </tr>
-  </tbody>
 </table>
 
 <p>
@@ -442,81 +393,7 @@ Folders and transport markers remain shared where designed, but current-facing s
 <a id="throughput"></a>
 <h2 align="center">Throughput</h2>
 
-The accepted front-door performance authority is the later saturated Rust-backed run recorded in the manifest/log pair. Older hardware comparison tables are historical benchmark ancestry, not the current operator ceiling.
-
-<table width="100%" border="1" bordercolor="#111111" cellpadding="16" cellspacing="0">
-  <tr>
-    <td width="50%" valign="top">
-      <strong>Canonical throughput</strong><br>
-      <code>276798.7185</code><br><br>
-      Accepted saturated steady-state parallel-batch transport throughput.
-    </td>
-    <td width="50%" valign="top">
-      <strong>Encode throughput</strong><br>
-      <code>94104.7837</code><br><br>
-      Accepted wrapper encode throughput on the native path.
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" valign="top">
-      <strong>Decode throughput</strong><br>
-      <code>296145.6735</code><br><br>
-      Accepted wrapper decode throughput on the native path.
-    </td>
-    <td width="50%" valign="top">
-      <strong>Short-text latency p50</strong><br>
-      <code>0.377 ms</code><br><br>
-      Current accepted short-text benchmark headline from the run-of-record manifest.
-    </td>
-  </tr>
-</table>
-
-<table width="100%" border="1" bordercolor="#111111" cellpadding="14" cellspacing="0">
-  <thead>
-    <tr>
-      <th align="left" width="24%">Measure</th>
-      <th align="left" width="28%">Locked value</th>
-      <th align="left" width="48%">Meaning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td valign="top">Rate unit</td>
-      <td valign="top"><code>imc_stream_words/sec</code></td>
-      <td valign="top">All throughput figures below are transport words, not natural-language words per second.</td>
-    </tr>
-    <tr>
-      <td valign="top">Run name</td>
-      <td valign="top"><code>IMC-Canonical-20260307T131330Z</code></td>
-      <td valign="top">Later accepted March 7 run-of-record.</td>
-    </tr>
-    <tr>
-      <td valign="top">Benchmark run id</td>
-      <td valign="top"><code>A4-BENCH-20260307T131414Z</code></td>
-      <td valign="top">Current benchmark identity mirrored by the manifest, run log, and benchmark artifacts.</td>
-    </tr>
-    <tr>
-      <td valign="top">Canonical throughput</td>
-      <td valign="top"><code>276798.7185</code></td>
-      <td valign="top">Accepted saturated steady-state parallel-batch transport throughput.</td>
-    </tr>
-    <tr>
-      <td valign="top">Encode throughput</td>
-      <td valign="top"><code>94104.7837</code></td>
-      <td valign="top">Accepted wrapper encode throughput on the native path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Decode throughput</td>
-      <td valign="top"><code>296145.6735</code></td>
-      <td valign="top">Accepted wrapper decode throughput on the native path.</td>
-    </tr>
-    <tr>
-      <td valign="top">Short-text latency p50</td>
-      <td valign="top"><code>0.377 ms</code></td>
-      <td valign="top">Current accepted short-text benchmark headline from the run-of-record manifest.</td>
-    </tr>
-  </tbody>
-</table>
+All throughput numbers, latency headlines, and benchmark identity are locked in the <a href="#current-authority">Current Authority</a> table above. The accepted front-door performance authority is the later saturated Rust-backed run recorded in the manifest/log pair. Older hardware comparison tables are historical benchmark ancestry, not the current operator ceiling.
 
 <p>
   <img src=".github/assets/readme/section-bars/repo-shape.svg" alt="REPO SHAPE" width="100%">
