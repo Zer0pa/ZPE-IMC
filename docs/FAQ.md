@@ -351,7 +351,7 @@ representations, not receptor-level reconstructions.
 No. ZPE-IMC is released under the Zer0pa Source-Available License
 v6.0 (SAL v6.0), which is not an OSI-approved open-source license.
 It is source-available with a delayed open-source conversion: each
-version converts automatically to Apache 2.0 three years after its
+version converts automatically to Apache 2.0 five years after its
 first public release. Until then: free for individuals, researchers,
 open-source projects, and organisations with annual gross revenue
 at or under USD 100M. A Commercial License is required above that
