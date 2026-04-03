@@ -1,0 +1,25 @@
+{
+  "repo_name": "ZPE-IMC",
+  "repo_role": "platform_core_architecture",
+  "status": "platform_only_not_first_sale",
+  "plain_english_summary": "Deterministic multimodal transport and dispatch layer for the Zer0pa encoding family. Ten modalities through a single 20-bit transport word.",
+  "commercial_wedge": "Platform architecture — the integration thesis that makes domain lanes composable. Not the first buying surface. Commercial value surfaces through IoT, XR, Robotics, and Geo product repos.",
+  "technical_wedge": "Unified 20-bit transport word dispatching 10 modalities. 276,798 IMC words/sec, Rust-backed native backend, deterministic byte-identical replay, CPU-native.",
+  "ideal_first_buyer": "Not the first buying surface. Domain repos (IoT, XR, Robotics, Geo) are the entry points. IMC may become relevant to multimodal platform teams later.",
+  "deployment_model": "Platform architecture — Python package with Rust-backed native kernel",
+  "proof_anchors": [
+    "proofs/logs/phase6_run_of_record_manifest.json",
+    "proofs/logs/phase6_comet_run.txt",
+    "code/benchmarks/artifacts/BENCHMARK_REPORT.md"
+  ],
+  "not_claimed": [
+    "Human-equivalence semantics",
+    "Commodity compression supremacy",
+    "Unconstrained smell/taste coverage",
+    "Phoneme-perfect or speaker-ID voice equivalence",
+    "Packaged enterprise platform readiness"
+  ],
+  "family_position": "Umbrella integration and dispatch layer for the entire Zer0pa deterministic encoding family.",
+  "license": "LicenseRef-Zer0pa-SAL-6.0",
+  "contact": "architects@zer0pa.ai"
+}

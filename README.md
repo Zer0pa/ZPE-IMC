@@ -32,6 +32,75 @@
   </tr>
 </table>
 
+---
+
+## Platform Role
+
+ZPE-IMC is the deterministic multimodal transport and dispatch layer for the Zer0pa encoding family. It is **not the first thing to buy** — it is the architecture thesis, the integration layer, and the reason the domain-specific lanes belong together.
+
+## What This Is
+
+ZPE-IMC is a deterministic, CPU-native transport system that carries ten user-facing modalities through a single 20-bit transport word — no neural network, no training loop, and no GPU.
+
+## Commercial Wedge
+
+IMC is the **platform architecture**, not the commercial spearhead. The commercial value surfaces through domain-specific product repos that implement the IMC encoding primitives for concrete buyer problems. If you are looking for the first buying surface, start here:
+
+| First commercial wedge | Repo | Buyer |
+|---|---|---|
+| Sensor compression | [ZPE-IoT](https://github.com/Zer0pa/ZPE-IoT) | Industrial IoT / edge telemetry |
+| Hand-pose transport | [ZPE-XR](https://github.com/Zer0pa/ZPE-XR) | XR platform / spatial computing |
+| Motion transport | [ZPE-Robotics](https://github.com/Zer0pa/ZPE-Robotics) | Robotics infra / simulation |
+| Trajectory compression | [ZPE-Geo](https://github.com/Zer0pa/ZPE-Geo) | Mobility / fleet analytics |
+
+IMC matters commercially as the integration thesis that makes the domain lanes composable — and may itself become a direct offering as the portfolio matures.
+
+## Technical Wedge
+
+The technical edge is a unified 20-bit transport word dispatching ten modalities (text/emoji, diagram/image, music, voice, mental, touch, smell, taste) through deterministic encode/decode paths. Current evidence: **276,798 IMC words/sec** throughput, Rust-backed native backend, deterministic byte-identical replay across all tested modalities, CPU-native with no GPU dependency.
+
+## Current Readiness
+
+**`PLATFORM_ONLY_NOT_FIRST_SALE`** — Run-of-record accepted (March 7, 2026). Rust-backed path validated. This is production-grade platform architecture, not a packaged first-sale product. Free to use at or below USD 100M annual gross revenue under SAL v6.0.
+
+## What Is Proved
+
+- Native Rust backend: `backend=rust`, `compiled_extension=1`, `fallback_used=0`
+- Deterministic byte-identical replay across all ten modalities
+- 276,798 IMC stream words/sec throughput on the accepted run-of-record
+- Integrated coverage across all ten user-facing modalities
+- CPU-native execution — no GPU, no training loop
+
+## What Is Not Being Claimed
+
+- Human-equivalence semantics for any modality
+- Commodity compression supremacy
+- Unconstrained smell/taste coverage — these lanes carry bounded representational scope
+- Phoneme-perfect or speaker-ID voice equivalence
+- Packaged enterprise platform readiness — IMC is architecture, not yet product
+
+## Ideal First Buyer
+
+IMC is not the first buying surface. The domain repos (IoT, XR, Robotics, Geo) are. IMC may become directly relevant to multimodal platform teams seeking a unified deterministic transport layer.
+
+## Deployment Model
+
+Platform architecture — Python package with Rust-backed native kernel. The individual domain repos are the deployment vehicles for specific use cases.
+
+## Authority / Proof Anchors
+
+| Anchor | Artifact |
+|---|---|
+| Run-of-record manifest | [`proofs/logs/phase6_run_of_record_manifest.json`](proofs/logs/phase6_run_of_record_manifest.json) |
+| Comet run log | [`proofs/logs/phase6_comet_run.txt`](proofs/logs/phase6_comet_run.txt) |
+| Benchmark report | [`code/benchmarks/artifacts/BENCHMARK_REPORT.md`](code/benchmarks/artifacts/BENCHMARK_REPORT.md) |
+
+## Role In The Zer0pa Family
+
+ZPE-IMC is the umbrella integration and dispatch layer for the entire Zer0pa deterministic encoding family. Every domain repo (IoT, XR, Robotics, Geo, FT, Ink, Neuro, Mocap, Prosody, Bio) implements a subset of the IMC encoding primitives for its specific signal domain. Family alignment is documentary and contractual — domain repos reference IMC contracts but do not runtime-import IMC.
+
+---
+
 
 <a id="quickstart-and-license"></a>
 <h2 align="center">Quickstart And License</h2>
