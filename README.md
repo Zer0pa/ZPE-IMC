@@ -32,6 +32,35 @@
   </tr>
 </table>
 
+---
+
+## What This Is
+
+ZPE-IMC is the deterministic multimodal transport layer behind the Zer0pa encoding family. It carries ten user-facing modalities through a single 20-bit transport word — no neural network, no training loop, no GPU. Rust-backed native kernel. CPU-native execution.
+
+Accepted run-of-record (March 7, 2026): **276,798 IMC stream words/sec**, Rust-backed backend (`compiled_extension=1`, `fallback_used=0`), deterministic byte-identical replay across all ten modalities, 170 operator-lane tests passed. Every claim traces to committed artifacts under `proofs/logs/`.
+
+IMC is architecture, not the first thing to buy. The domain-specific repos implement concrete buyer problems on top of the IMC encoding primitives:
+
+| Domain | Repo |
+|---|---|
+| Sensor compression | [ZPE-IoT](https://github.com/Zer0pa/ZPE-IoT) |
+| Hand-pose transport | [ZPE-XR](https://github.com/Zer0pa/ZPE-XR) |
+| Motion transport | [ZPE-Robotics](https://github.com/Zer0pa/ZPE-Robotics) |
+| Trajectory compression | [ZPE-Geo](https://github.com/Zer0pa/ZPE-Geo) |
+
+IMC matters as the integration thesis that makes the domain lanes composable under a single deterministic transport. Free to use at or below USD 100M annual gross revenue under SAL v6.0.
+
+**Not claimed:** human-equivalence semantics, commodity compression supremacy, unconstrained smell/taste coverage, phoneme-perfect voice equivalence, or packaged enterprise platform readiness.
+
+| Anchor | Artifact |
+|---|---|
+| Run-of-record manifest | [`phase6_run_of_record_manifest.json`](proofs/logs/phase6_run_of_record_manifest.json) |
+| Comet run log | [`phase6_comet_run.txt`](proofs/logs/phase6_comet_run.txt) |
+| Benchmark report | [`BENCHMARK_REPORT.md`](code/benchmarks/artifacts/BENCHMARK_REPORT.md) |
+
+---
+
 
 <a id="quickstart-and-license"></a>
 <h2 align="center">Quickstart And License</h2>
